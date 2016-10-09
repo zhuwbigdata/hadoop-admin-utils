@@ -25,7 +25,7 @@ echo "BASEDIR=$BASEDIR"   	>> $LOG_FILE
 echo "PIG_FILE=$PIG_FILE" 	>> $LOG_FILE
 echo "CONFIG_FILE=$CONFIG_FILE" >> $LOG_FILE
 
-pig -useHCatalog \
+/usr/bin/pig -useHCatalog \
     -Dpool.name=$POOL_NAME \
     -Dmapred.map.tasks.speculative.execution=true \
     -Dmapred.reduce.tasks.speculative.execution=true \
