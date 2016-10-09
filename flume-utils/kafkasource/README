@@ -1,0 +1,3 @@
+README
+Use kafka console producer to send  messages off topic: test
+HDFS destination: /tmp/kafka 
