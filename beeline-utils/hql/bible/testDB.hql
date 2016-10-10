@@ -1,4 +1,4 @@
 show databases;
-use  dsaphqa;
+use  bible;
 show tables;
 !quit
