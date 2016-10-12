@@ -6,7 +6,7 @@ check_usage() {
   if [ $# -lt 2 ]
   then
     echo "Usage:"
-    echo "$0  <number_of_rows_with_100-bytes> <output_dir>"
+    echo "$0  <output_dir> <report_dir>"
     exit 1
   fi
 }
@@ -15,4 +15,4 @@ echo "HDFS BLOCK SIZE:$DFS_BLOCK_SZ"
 if  hdfs dfs -test -d $2 ; then
   hdfs dfs -rm -r -skipTrash $2
 fi
-hadoop jar $MR_EXAMPLE_JAR_LOC teragen $1 $2
+hadoop jar $MR_EXAMPLE_JAR_LOC teravalidate $1 $2
