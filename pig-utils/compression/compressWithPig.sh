@@ -12,12 +12,9 @@ check_usage $*
 BASEDIR=$(dirname $0)
 echo "compression codec=org.apache.hadoop.io.compress.${3}Codec"
 /usr/bin/pig	-Dmapreduce.map.speculative=true \
-	-Dmapreduce.input.fileinputformat.split.minsize=2147483648 \
-	-Dmapreduce.input.fileinputformat.split.maxsize=2147483648 \
-	-Dmapreduce.output.fileoutputformat.compress=true \
-	-Dmapreduce.map.output.compression.codec="org.apache.hadoop.io.compress.${3}Codec" \
-	-Dmapreduce.output.compression.codec="org.apache.hadoop.io.compress.${3}Codec" \
 	-Dmapreduce.reduce.speculative=true \
+	-Dmapreduce.output.fileoutputformat.compress=true \
+	-Dmapreduce.output.fileoutputformat.compress.codec=org.apache.hadoop.io.compress.${3}Codec \
 	-exectype ${4} \
 	-param INPUT_DIR=$1 \
 	-param OUTPUT_DIR=$2 \

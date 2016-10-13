@@ -1,5 +1,4 @@
 #!/bin/bash
-
 check_usage() {
   if [ $# -lt 4 ]
   then
@@ -12,13 +11,9 @@ check_usage() {
 check_usage $*
 BASEDIR=$(dirname $0)
 echo "compression codec=org.apache.hadoop.io.compress.${3}Codec"
-pig	-Dmapred.map.tasks.speculative.execution="true" \
-	-Dmapred.reduce.tasks.speculative.execution="true" \
-	-Dmapred.min.split.size=2147483648 \
-	-Dmapred.max.split.size=2147483648 \
-	-Dmapred.input.compress="true" \
-	-Dmapred.input.compression.codec="org.apache.hadoop.io.compress.${3}Codec" \
-	-Dmapred.output.compress="false" \
+/usr/bin/pig    -Dmapreduce.map.speculative=true \
+	-Dmapreduce.reduce.speculative=true \
+	-Dmapreduce.output.fileoutputformat.compress=false \
 	-x ${4} \
 	-param INPUT_DIR=$1 \
 	-param OUTPUT_DIR=$2 \
