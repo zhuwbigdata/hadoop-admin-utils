@@ -37,4 +37,4 @@ $BASE_DIR/compressWithPig.sh $raw_input_dir $gzip_output_dir   Gzip $1
 echo "Compressing with Snappy ..."
 $BASE_DIR/compressWithPig.sh $raw_input_dir $snappy_output_dir Snappy $1 
 echo "Compressing with Deflate ..."
-$BASE_DIR/compressWithPig.sh $raw_input_dir $deflate_output_dir Deflate $1 
+$BASE_DIR/compressWithPig.sh $raw_input_dir $deflate_output_dir Default $1 

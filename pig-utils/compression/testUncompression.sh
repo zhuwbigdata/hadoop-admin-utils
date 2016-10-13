@@ -39,4 +39,4 @@ $BASE_DIR/uncompressWithPig.sh $gzip_input_dir $gzip_output_dir   Gzip   $1
 echo "UnCompressing with Snappy ..."
 $BASE_DIR/uncompressWithPig.sh $snappy_input_dir $snappy_output_dir Snappy  $1 
 echo "UnCompressing with Deflate ..."
-$BASE_DIR/uncompressWithPig.sh $deflate_input_dir $deflate_output_dir Deflate  $1 
+$BASE_DIR/uncompressWithPig.sh $deflate_input_dir $deflate_output_dir Default  $1 
