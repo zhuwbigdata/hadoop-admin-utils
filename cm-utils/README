@@ -1,0 +1,6 @@
+README
+CDH keeps server configurations under /var/run/cloudera-scm-agent/process, instead of /etc/${HADOOP_COMPONENT, e.g. hive}/conf.
+The exist configuration locations only contain client configuration.
+
+ 
+
