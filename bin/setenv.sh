@@ -10,6 +10,7 @@ KAFKA_BROKERS=$(uname -n):9092
 IMPALA_URI=$(uname -n):21000
 OOZIE_URI=http://$(uname -n):11000/oozie 
 SQOOP_JDBC_URL="jdbc:oracle:thin:@//$(uname -n):1521/xe"
+YARN_URI=$(uname -n):8088
 export ALL_NODES=$(eval echo $MASTERS $SLAVES | tr ' ' \\n | sort | uniq | tr \\n ' ');
 export MASTER_NODES=$(eval echo $MASTERS);
 export SLAVE_NODES=$(eval echo $SLAVES);
