@@ -1,5 +1,0 @@
-#!/bin/bash
-YARN_PROXY_SERVER=$(uname -n)
-YARN_PROXY_PORT=8088
-export YARN_PROXY_SERVER;
-export YARN_PROXY_PORT;

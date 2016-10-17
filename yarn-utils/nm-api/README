@@ -1,0 +1,4 @@
+README
+A node manager manages multiple applications with a number of containers being configured for the node.
+An application can use multiple containers on the node.
+TBD: how to identify JVM based on the container ID?
