@@ -1,0 +1,10 @@
+README
+APPLICAION:JOB=1:m
+JOB:JOB_ATTEMPT=1:m
+JOB:TASK=1:m
+TASK:TASK_ATTEMPT=1:m
+TASK_ATTEMPT:CONTAINER=1:1
+An application consists many jobs.
+A job consists of tasks - Maps first and Reduces after, or Maps only. 
+A task is either map or reduce,  consists of many task attempts.
+A task attempt will be executed in a container under a node mananger.
