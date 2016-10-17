@@ -1,5 +1,5 @@
 README
 A YARN cluster can run many applications.
 An application uses one container as its applicaiton master.
-An application has a list of application attempts.
-TBD: Each application attempt use a container under a node manager. 
+An application master can try a number of application attempts as configured in 
+yarn.resourcemanager.am.max-attempts (default 2).
