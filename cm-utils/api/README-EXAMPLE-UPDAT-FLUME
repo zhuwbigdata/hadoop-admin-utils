@@ -1,0 +1,27 @@
+READMes how to change the config, e.g. change rollInterval value.
+[cloudera@quickstart api]$ vim flume-agent.conf
+
+[cloudera@quickstart api]$ ./putRCGConfigByServiceNameAndRCGName.sh flume flume-AGENT-BASE flume-agent.conf
+{
+  "items" : [ {
+    "name" : "agent_config_file",
+    "value" : " tier1.sources = source1\n tier1.channels = channel1\n tier1.sinks = sink1\n\n tier1.sources.source1.type = jms\n tier1.sources.source1.channels = c1\n tier1.sources.source1.initialContextFactory = org.apache.activemq.jndi.ActiveMQInitialContextFactory\n tier1.sources.source1.connectionFactory = GenericConnectionFactory\n tier1.sources.source1.providerURL = tcp://quickstart.cloudera:61616\n tier1.sources.source1.destinationName = cloudera \n tier1.sources.source1.destinationType = TOPIC\n tier1.sources.source1.channels = channel1\n \n tier1.channels.channel1.type = memory\n tier1.channels.channel1.capacity = 10000\n tier1.channels.channel1.transactionCapacity = 1000\n \n tier1.sinks.sink1.type = hdfs\n tier1.sinks.sink1.hdfs.path = /tmp/oozie/%y-%m-%d\n tier1.sinks.sink1.hdfs.rollInterval = 600 \n tier1.sinks.sink1.hdfs.rollSize = 0\n tier1.sinks.sink1.hdfs.rollCount = 0\n tier1.sinks.sink1.hdfs.fileType = DataStream\n tier1.sinks.sink1.channel = channel1"
+  }, {
+    "name" : "agent_java_heapsize",
+    "value" : "52428800"
+  } ]
+}
+
+
+Here is how to verify the change.
+[cloudera@quickstart api]$ ./getRCGConfigByServiceNameAndRCGName.sh flume flume-AGENT-BASE
+{
+  "items" : [ {
+    "name" : "agent_config_file",
+    "value" : " tier1.sources = source1\n tier1.channels = channel1\n tier1.sinks = sink1\n\n tier1.sources.source1.type = jms\n tier1.sources.source1.channels = c1\n tier1.sources.source1.initialContextFactory = org.apache.activemq.jndi.ActiveMQInitialContextFactory\n tier1.sources.source1.connectionFactory = GenericConnectionFactory\n tier1.sources.source1.providerURL = tcp://quickstart.cloudera:61616\n tier1.sources.source1.destinationName = cloudera \n tier1.sources.source1.destinationType = TOPIC\n tier1.sources.source1.channels = channel1\n \n tier1.channels.channel1.type = memory\n tier1.channels.channel1.capacity = 10000\n tier1.channels.channel1.transactionCapacity = 1000\n \n tier1.sinks.sink1.type = hdfs\n tier1.sinks.sink1.hdfs.path = /tmp/oozie/%y-%m-%d\n tier1.sinks.sink1.hdfs.rollInterval = 600 \n tier1.sinks.sink1.hdfs.rollSize = 0\n tier1.sinks.sink1.hdfs.rollCount = 0\n tier1.sinks.sink1.hdfs.fileType = DataStream\n tier1.sinks.sink1.channel = channel1"
+  }, {
+    "name" : "agent_java_heapsize",
+    "value" : "52428800"
+  } ]
+}
+
