@@ -1,0 +1,172 @@
+README
+
+1. List all services.
+$ ./listServices.sh | grep name | grep -i flume
+    "name" : "flume",
+      "name" : "FLUME_AGENTS_HEALTHY",
+
+2. List Role Config Groups by Service Name.
+$ ./listRoleConfigGroupsByServiceName.sh flume
+{
+  "items" : [ {
+    "name" : "flume-AGENT-BASE",
+    "displayName" : "Agent Default Group",
+    "roleType" : "AGENT",
+    "base" : true,
+    "serviceRef" : {
+      "clusterName" : "Cloudera QuickStart",
+      "serviceName" : "flume"
+    },
+    "config" : {
+      "items" : [ {
+        "name" : "agent_config_file",
+        "value" : " tier1.sources  = source1\n tier1.channels = channel1\n tier1.sinks = sink1\n\n tier1.sources.source1.type = jms\n tier1.sources.source1.channels = c1\n tier1.sources.source1.initialContextFactory = org.apache.activemq.jndi.ActiveMQInitialContextFactory\n tier1.sources.source1.connectionFactory = GenericConnectionFactory\n tier1.sources.source1.providerURL = tcp://quickstart.cloudera:61616\n tier1.sources.source1.destinationName = cloudera \n tier1.sources.source1.destinationType = TOPIC\n tier1.sources.source1.channels = channel1\n \n tier1.channels.channel1.type = memory\n tier1.channels.channel1.capacity = 10000\n tier1.channels.channel1.transactionCapacity = 1000\n \n tier1.sinks.sink1.type = hdfs\n tier1.sinks.sink1.hdfs.path = /tmp/oozie/%y-%m-%d\n tier1.sinks.sink1.hdfs.rollInterval = 30 \n tier1.sinks.sink1.hdfs.rollSize = 0\n tier1.sinks.sink1.hdfs.rollCount = 0\n tier1.sinks.sink1.hdfs.fileType = DataStream\n tier1.sinks.sink1.channel = channel1"
+      }, {
+        "name" : "agent_java_heapsize",
+        "value" : "52428800"
+      } ]
+    }
+  } ]
+}
+
+
+3. List Role Group details by Service Name and Role Config Group Name.
+$ ./listRoleConfigGroupsByServiceName.sh flume flume-AGENT-BASE
+{
+  "name" : "flume-AGENT-BASE",
+  "displayName" : "Agent Default Group",
+  "roleType" : "AGENT",
+  "base" : true,
+  "serviceRef" : {
+    "clusterName" : "Cloudera QuickStart",
+    "serviceName" : "flume"
+  },
+  "config" : {
+    "items" : [ {
+      "name" : "agent_config_file",
+      "value" : " tier1.sources  = source1\n tier1.channels = channel1\n tier1.sinks = sink1\n\n tier1.sources.source1.type = jms\n tier1.sources.source1.channels = c1\n tier1.sources.source1.initialContextFactory = org.apache.activemq.jndi.ActiveMQInitialContextFactory\n tier1.sources.source1.connectionFactory = GenericConnectionFactory\n tier1.sources.source1.providerURL = tcp://quickstart.cloudera:61616\n tier1.sources.source1.destinationName = cloudera \n tier1.sources.source1.destinationType = TOPIC\n tier1.sources.source1.channels = channel1\n \n tier1.channels.channel1.type = memory\n tier1.channels.channel1.capacity = 10000\n tier1.channels.channel1.transactionCapacity = 1000\n \n tier1.sinks.sink1.type = hdfs\n tier1.sinks.sink1.hdfs.path = /tmp/oozie/%y-%m-%d\n tier1.sinks.sink1.hdfs.rollInterval = 30 \n tier1.sinks.sink1.hdfs.rollSize = 0\n tier1.sinks.sink1.hdfs.rollCount = 0\n tier1.sinks.sink1.hdfs.fileType = DataStream\n tier1.sinks.sink1.channel = channel1"
+    }, {
+      "name" : "agent_java_heapsize",
+      "value" : "52428800"
+    } ]
+  }
+}
+
+
+Other examples:
+1. List service by name. 
+$ ./listServiceByName.sh flume
+{
+  "name" : "flume",
+  "type" : "FLUME",
+  "clusterRef" : {
+    "clusterName" : "Cloudera QuickStart"
+  },
+  "serviceUrl" : "http://quickstart.cloudera:7180/cmf/serviceRedirect/flume",
+  "roleInstancesUrl" : "http://quickstart.cloudera:7180/cmf/serviceRedirect/flume/instances",
+  "serviceState" : "STARTED",
+  "healthSummary" : "GOOD",
+  "healthChecks" : [ {
+    "name" : "FLUME_AGENTS_HEALTHY",
+    "summary" : "GOOD",
+    "suppressed" : false
+  } ],
+  "configStalenessStatus" : "FRESH",
+  "clientConfigStalenessStatus" : "FRESH",
+  "maintenanceMode" : false,
+  "maintenanceOwners" : [ ],
+  "displayName" : "Flume",
+  "entityStatus" : "GOOD_HEALTH"
+}
+
+2. List Roles by Service Name (e.g. role name is shown as "name" : "flume-AGENT-6f7e9fa2e076f5332a81ffe11109ab36").
+$ ./listRolesByServiceName.sh  flume
+{
+  "items" : [ {
+    "name" : "flume-AGENT-6f7e9fa2e076f5332a81ffe11109ab36",
+    "type" : "AGENT",
+    "serviceRef" : {
+      "clusterName" : "Cloudera QuickStart",
+      "serviceName" : "flume"
+    },
+    "hostRef" : {
+      "hostId" : "quickstart.cloudera"
+    },
+    "roleUrl" : "http://quickstart.cloudera:7180/cmf/roleRedirect/flume-AGENT-6f7e9fa2e076f5332a81ffe11109ab36",
+    "roleState" : "STARTED",
+    "healthSummary" : "GOOD",
+    "healthChecks" : [ {
+      "name" : "FLUME_AGENT_FILE_DESCRIPTOR",
+      "summary" : "GOOD",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_HEAP_DUMP_DIRECTORY_FREE_SPACE",
+      "summary" : "DISABLED",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_HOST_HEALTH",
+      "summary" : "GOOD",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_LOG_DIRECTORY_FREE_SPACE",
+      "summary" : "GOOD",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_SCM_HEALTH",
+      "summary" : "GOOD",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_SWAP_MEMORY_USAGE",
+      "summary" : "GOOD",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_UNEXPECTED_EXITS",
+      "summary" : "GOOD",
+      "suppressed" : false
+    }, {
+      "name" : "FLUME_AGENT_WEB_METRIC_COLLECTION",
+      "summary" : "GOOD",
+      "suppressed" : false
+    } ],
+    "configStalenessStatus" : "FRESH",
+    "maintenanceMode" : false,
+    "maintenanceOwners" : [ ],
+    "commissionState" : "COMMISSIONED",
+    "roleConfigGroupRef" : {
+      "roleConfigGroupName" : "flume-AGENT-BASE"
+    },
+    "entityStatus" : "GOOD_HEALTH"
+  } ]
+}
+
+3. List config file names by service name and role name.
+$./listConfigFileNamesByServiceNameAndRoleName.sh flume flume-AGENT-6f7e9fa2e076f5332a81ffe11109ab36
+{
+  "configFiles" : [ "custom-mimetypes.xml", "cloudera-monitor.properties", "hadoop-conf/topology.map", "flume.keytab", "hadoop-conf/core-site.xml", "jaas.conf", "hadoop-conf/hadoop-env.sh", "hadoop-conf/topology.py", "redaction-rules.json", "hadoop-conf/log4j.properties", "morphlines.conf", "cloudera-stack-monitor.properties", "hadoop-conf/ssl-client.xml", "flume.conf", "hadoop-conf/hdfs-site.xml", "event-filter-rules.json", "grok-dictionary.conf", "log4j.properties" ]
+}
+
+4. List config file by service name, role name and file name (Nots: file name in "").  
+$ ./listConfigFileByServiceNameAndRoleNameAndFileName.sh flume flume-AGENT-6f7e9fa2e076f5332a81ffe11109ab36 "flume.conf"
+tier1.sources=source1
+tier1.channels=channel1
+tier1.sinks=sink1
+tier1.sources.source1.type=jms
+tier1.sources.source1.channels=channel1
+tier1.sources.source1.initialContextFactory=org.apache.activemq.jndi.ActiveMQInitialContextFactory
+tier1.sources.source1.connectionFactory=GenericConnectionFactory
+tier1.sources.source1.providerURL=tcp://quickstart.cloudera:61616
+tier1.sources.source1.destinationName=cloudera
+tier1.sources.source1.destinationType=TOPIC
+tier1.channels.channel1.type=memory
+tier1.channels.channel1.capacity=10000
+tier1.channels.channel1.transactionCapacity=1000
+tier1.sinks.sink1.type=hdfs
+tier1.sinks.sink1.hdfs.path=/tmp/oozie/%y-%m-%d
+tier1.sinks.sink1.hdfs.rollInterval=30
+tier1.sinks.sink1.hdfs.rollSize=0
+tier1.sinks.sink1.hdfs.rollCount=0
+tier1.sinks.sink1.hdfs.fileType=DataStream
+tier1.sinks.sink1.channel=channel1
+
+
+

@@ -2,3 +2,7 @@ README
 A node manager manages multiple applications with a number of containers being configured for the node.
 An application can use multiple containers on the node.
 TBD: how to identify JVM based on the container ID?
+yarn     10097 31229  0 20:34 ?        00:00:00 bash /yarn/nm/usercache/cloudera/appcache/application_1476062091141_0048/container_1476062091141_0048_01_000001/default_container_executor.sh
+yarn     10099 10097  0 20:34 ?        00:00:00 /bin/bash -c /usr/java/jdk1.7.0_67-cloudera/bin/java -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=/var/log/hadoop-yarn/container/application_1476062091141_0048/container_1476062091141_0048_01_000001 -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA -Dhadoop.root.logfile=syslog  -Djava.net.preferIPv4Stack=true -Xmx52428800 org.apache.hadoop.mapreduce.v2.app.MRAppMaster 1>/var/log/hadoop-yarn/container/application_1476062091141_0048/container_1476062091141_0048_01_000001/stdout 2>/var/log/hadoop-yarn/container/application_1476062091141_0048/container_1476062091141_0048_01_000001/stderr 
+yarn     10115 10099 68 20:34 ?        00:00:09 /usr/java/jdk1.7.0_67-cloudera/bin/java -Dlog4j.configuration=container-log4j.properties -Dyarn.app.container.log.dir=/var/log/hadoop-yarn/container/application_1476062091141_0048/container_1476062091141_0048_01_000001 -Dyarn.app.container.log.filesize=0 -Dhadoop.root.logger=INFO,CLA -Dhadoop.root.logfile=syslog -Djava.net.preferIPv4Stack=true -Xmx52428800 org.apache.hadoop.mapreduce.v2.app.MRAppMaster
+
