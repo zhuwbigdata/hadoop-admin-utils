@@ -1,0 +1,7 @@
+# AGENT
+{ "TYPE":"agent", "NAME":"flume", "SOURCES": "messages,src2", "CHANNELS": "ch1,ch2,ch3,ch4", "SINKS": "sink1,sink2,sink3,sink4"}
+#SOURCES
+{ "TYPE":"source", "NAME":"messages", "CHANNELS": "ch1,ch2,ch3", "INTERCEPTORS": "i1", "OTHER": "spoolDir = /home/nasdaq/spool/|fileSuffix = .COMPLETE| batchSize = 1000"}
+#SINKS
+#CHANNELS
+spoolDir = /home/nasdaq/spool/|fileSuffix = .COMPLETE| batchSize = 1000
