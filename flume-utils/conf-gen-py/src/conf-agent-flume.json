@@ -1,0 +1,85 @@
+{  "NAME":"flume",
+
+  "SOURCES": [ 
+    {  "NAME":"messages", 
+       "TYPE": "spooldir",  
+       "CHANNELS": "cancels_solr_channel cancels_hdfs_channel", 
+       "INTERCEPTORS": [
+          {   "NAME": "i1",
+              "TYPE": "regex_extractor", 
+              "OTHERS": { 
+                "regex": "(^cancels|^breaks|^executions|^ordercancelsPending|^ordersModify|^orderReject|^orders|^orderBooked)",
+                "serializers": "s1",
+                "serializers.s1.name": "table" 
+              }
+          } 
+        ],
+       "SELECTOR": {
+         "TYPE": "multiplexing",
+         "OTHERS": {
+            "mapping.cancels": "cancels_solr_channel cancels_hdfs_channel",
+            "mapping.breaks":  "breaks_solr_channel breaks_hdfs_channel",
+            "mapping.executions":  "exec_solr_channel exec_hdfs_channel",
+            "mapping.ordercancelsPending": "ocp_solr_channel ocp_hdfs_channel",
+            "mapping.ordersModify": "om_solr_channel om_hdfs_channel",
+            "mapping.orderReject": "or_solr_channel or_hdfs_channel",
+            "mapping.orders": "orders_solr_channel orders_hdfs_channel",
+            "mapping.orderBooked": "orders_solr_channel orders_hdfs_channel"
+         }
+       },
+       "OTHERS": { 
+         "spoolDir": "/home/options/spool", 
+         "fileSuffix": ".COMPLETE",
+         "batchSize":  "1000" 
+        }
+    }
+  ],
+  
+  "CHANNELS": [
+    {
+      "NAME": "cancels_solr_channel",
+      "TYPE": "memory",
+      "OTHERS": {
+          "transactionCapacity": "5000",
+          "capacity": "100000"
+        }
+    },
+    {
+      "NAME": "cancels_hdfs_channel",
+      "TYPE": "memory",
+      "OTHERS": {
+          "transactionCapacity": "5000",
+          "capacity": "100000"
+        }
+    }
+  ],
+  
+  "SINKS": [
+    {   "NAME": "cancels_solr_sink",
+         "TYPE": "org.apache.flume.sink.solr.morphline.MorphlineSolrSink",
+         "CHANNEL": "cancels_solr_channel",
+         "OTHERS": {
+           "morphlineFile": "morphlines.conf",
+           "morphlineId":  "cancels",
+           "batchSize": "1000"
+         }
+    },
+    {
+         "NAME": "cancels_hdfs_sink.type",
+         "TYPE": "hdfs",
+         "CHANNEL": "cancels_hdfs_channel",
+         "OTHERS": {
+           "hdfs.fileType": "DataStream",
+           "hdfs.inUsePrefix": "_",
+           "hdfs.fileSuffix": ".csv",
+           "hdfs.path": "/user/options/hive_tables/cancels",
+           "hdfs.batchSize": "10000",
+           "hdfs.rollSize": "10000000",
+           "hdfs.rollInterval": "500",
+           "hdfs.rollCount": "0"
+         }
+    }
+  ]
+} 
+  
+
