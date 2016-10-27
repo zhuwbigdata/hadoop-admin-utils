@@ -1,2 +1,5 @@
 README
+source type: exec
+channel: kafka, not memory or file
+sink: hdfs
 Use kafka console consumer to read messages off topic: flumesink
