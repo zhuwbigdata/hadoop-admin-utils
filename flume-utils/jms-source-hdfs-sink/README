@@ -1,3 +1,3 @@
 README
 Use JMS source to subscribe to JMS topic: cloudera 
-HDFS destination: /tmp/oozie
+Kafka destination: oozie 
