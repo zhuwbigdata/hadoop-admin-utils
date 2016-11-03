@@ -8,7 +8,7 @@ Configuration
 -------------------------------------------------------
 Client: /etc/$HADOOP_COMPONENT, e.g. hive, hadoop, etc.
 Server:  /var/run/cloudera-scm-agent/process
-DB passwords are encrypted.
+DB passwords are encrypted both on the disk and CM API.
 Hive conf: 781-hive-HIVEMETASTORE/hive-site.xml
 <name>javax.jdo.option.ConnectionUserName</name>
 <value>hive</value>
