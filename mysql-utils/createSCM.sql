@@ -1,0 +1,3 @@
+CREATE USER 'scm'@'localhost' IDENTIFIED BY 'scm1234';
+GRANT ALL PRIVILEGES ON *.* TO 'scm'@'localhost'  WITH GRANT OPTION;
+CREATE DATABASE scm;

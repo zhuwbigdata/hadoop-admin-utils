@@ -1,0 +1,2 @@
+README
+sudo rpm -ivh jdk-8u111-linux-x64.rpm
