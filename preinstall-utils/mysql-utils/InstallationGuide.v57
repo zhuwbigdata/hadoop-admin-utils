@@ -1,0 +1,153 @@
+[waynezhu@cdhm01 ~]$ sudo rpm -ivh mysql57-community-release-el7-9.noarch.rpm
+warning: mysql57-community-release-el7-9.noarch.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql57-community-release-el7-9  ################################# [100%]
+[waynezhu@cdhm01 ~]$ rpm -qa | grep mysql
+mysql57-community-release-el7-9.noarch
+[waynezhu@cdhm01 ~]$ yum update
+Loaded plugins: fastestmirror, langpacks
+You need to be root to perform this command.
+[waynezhu@cdhm01 ~]$ sudo yum update
+Loaded plugins: fastestmirror, langpacks
+mysql-connectors-community                                                         | 2.5 kB  00:00:00
+mysql-tools-community                                                              | 2.5 kB  00:00:00
+mysql57-community                                                                  | 2.5 kB  00:00:00
+(1/3): mysql57-community/x86_64/primary_db                                         |  86 kB  00:00:00
+(2/3): mysql-connectors-community/x86_64/primary_db                                |  11 kB  00:00:00
+(3/3): mysql-tools-community/x86_64/primary_db                                     |  29 kB  00:00:00
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb-libs.x86_64 1:5.5.50-1.el7_2 will be obsoleted
+---> Package mysql-community-libs.x86_64 0:5.7.16-1.el7 will be obsoleting
+--> Processing Dependency: mysql-community-common(x86-64) >= 5.7.9 for package: mysql-community-libs-5.7.16-1.el7.x86_64
+---> Package mysql-community-libs-compat.x86_64 0:5.7.16-1.el7 will be obsoleting
+--> Running transaction check
+---> Package mysql-community-common.x86_64 0:5.7.16-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==========================================================================================================
+ Package                             Arch           Version               Repository                 Size
+==========================================================================================================
+Installing:
+ mysql-community-libs                x86_64         5.7.16-1.el7          mysql57-community         2.1 M
+     replacing  mariadb-libs.x86_64 1:5.5.50-1.el7_2
+ mysql-community-libs-compat         x86_64         5.7.16-1.el7          mysql57-community         2.0 M
+     replacing  mariadb-libs.x86_64 1:5.5.50-1.el7_2
+Installing for dependencies:
+ mysql-community-common              x86_64         5.7.16-1.el7          mysql57-community         271 k
+
+Transaction Summary
+==========================================================================================================
+Install  2 Packages (+1 Dependent package)
+
+Total download size: 4.4 M
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/mysql57-community/packages/mysql-community-common-5.7.16-1.el7.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY
+Public key for mysql-community-common-5.7.16-1.el7.x86_64.rpm is not installed
+(1/3): mysql-community-common-5.7.16-1.el7.x86_64.rpm                              | 271 kB  00:00:00
+(2/3): mysql-community-libs-5.7.16-1.el7.x86_64.rpm                                | 2.1 MB  00:00:01
+(3/3): mysql-community-libs-compat-5.7.16-1.el7.x86_64.rpm                         | 2.0 MB  00:00:00
+----------------------------------------------------------------------------------------------------------
+Total                                                                     3.0 MB/s | 4.4 MB  00:00:01
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+Importing GPG key 0x5072E1F5:
+ Userid     : "MySQL Release Engineering <mysql-build@oss.oracle.com>"
+ Fingerprint: a4a9 4068 76fc bd3c 4567 70c8 8c71 8d3b 5072 e1f5
+ Package    : mysql57-community-release-el7-9.noarch (installed)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Warning: RPMDB altered outside of yum.
+  Installing : mysql-community-common-5.7.16-1.el7.x86_64                                             1/4
+  Installing : mysql-community-libs-5.7.16-1.el7.x86_64                                               2/4
+  Installing : mysql-community-libs-compat-5.7.16-1.el7.x86_64                                        3/4
+  Erasing    : 1:mariadb-libs-5.5.50-1.el7_2.x86_64                                                   4/4
+  Verifying  : mysql-community-libs-compat-5.7.16-1.el7.x86_64                                        1/4
+  Verifying  : mysql-community-common-5.7.16-1.el7.x86_64                                             2/4
+  Verifying  : mysql-community-libs-5.7.16-1.el7.x86_64                                               3/4
+  Verifying  : 1:mariadb-libs-5.5.50-1.el7_2.x86_64                                                   4/4
+
+Installed:
+  mysql-community-libs.x86_64 0:5.7.16-1.el7       mysql-community-libs-compat.x86_64 0:5.7.16-1.el7
+
+Dependency Installed:
+  mysql-community-common.x86_64 0:5.7.16-1.el7
+
+Replaced:
+  mariadb-libs.x86_64 1:5.5.50-1.el7_2
+
+Complete!
+[waynezhu@cdhm01 ~]$ sudo yum install mysql-server
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--> Running transaction check
+---> Package mysql-community-server.x86_64 0:5.7.16-1.el7 will be installed
+--> Processing Dependency: mysql-community-client(x86-64) >= 5.7.9 for package: mysql-community-server-5.7.16-1.el7.x86_64
+--> Running transaction check
+---> Package mysql-community-client.x86_64 0:5.7.16-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==========================================================================================================
+ Package                         Arch            Version                 Repository                  Size
+==========================================================================================================
+Installing:
+ mysql-community-server          x86_64          5.7.16-1.el7            mysql57-community          152 M
+Installing for dependencies:
+ mysql-community-client          x86_64          5.7.16-1.el7            mysql57-community           24 M
+
+Transaction Summary
+==========================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 176 M
+Installed size: 797 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/2): mysql-community-client-5.7.16-1.el7.x86_64.rpm                              |  24 MB  00:00:05
+(2/2): mysql-community-server-5.7.16-1.el7.x86_64.rpm                              | 152 MB  00:00:41
+----------------------------------------------------------------------------------------------------------
+Total                                                                     4.2 MB/s | 176 MB  00:00:41
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : mysql-community-client-5.7.16-1.el7.x86_64                                             1/2
+  Installing : mysql-community-server-5.7.16-1.el7.x86_64                                             2/2
+  Verifying  : mysql-community-client-5.7.16-1.el7.x86_64                                             1/2
+  Verifying  : mysql-community-server-5.7.16-1.el7.x86_64                                             2/2
+
+Installed:
+  mysql-community-server.x86_64 0:5.7.16-1.el7
+
+Dependency Installed:
+  mysql-community-client.x86_64 0:5.7.16-1.el7
+
+Complete!
+[waynezhu@cdhm01 ~]$ sudo systemctl start mysqld
+[waynezhu@cdhm01 ~]$ ps -ef | grep mysql
+mysql     2752     1  1 18:07 ?        00:00:00 /usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid
+waynezhu  2786  2251  0 18:08 pts/0    00:00:00 grep --color=auto mysql
+[waynezhu@cdhm01 ~]$ sudo service mysqld status
+Redirecting to /bin/systemctl status  mysqld.service
+● mysqld.service - MySQL Server
+   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)
+   Active: active (running) since Wed 2016-11-23 18:07:48 UTC; 3min 29s ago
+  Process: 2748 ExecStart=/usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid $MYSQLD_OPTS (code=exited, status=0/SUCCESS)
+  Process: 2670 ExecStartPre=/usr/bin/mysqld_pre_systemd (code=exited, status=0/SUCCESS)
+ Main PID: 2752 (mysqld)
+   CGroup: /system.slice/mysqld.service
+           └─2752 /usr/sbin/mysqld --daemonize --pid-file=/var/run/mysqld/mysqld.pid
+
+Nov 23 18:07:37 cdhm01 systemd[1]: Starting MySQL Server...
+Nov 23 18:07:48 cdhm01 systemd[1]: Started MySQL Server.

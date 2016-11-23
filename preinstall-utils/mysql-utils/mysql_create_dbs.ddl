@@ -1,0 +1,9 @@
+create database scm default character set utf8;
+create database amon default character set utf8;
+create database rman default character set utf8;
+create database hive default character set utf8;
+create database hue default character set utf8;
+create database nav default character set utf8;
+create database navms default character set utf8;
+create database oozie default character set utf8;
+create database sentry default character set utf8;
