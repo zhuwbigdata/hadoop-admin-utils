@@ -1,0 +1,11 @@
+
+$ ssh-keygen -t rsa -b 2048
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/waynezhu/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/waynezhu/.ssh/id_rsa.
+Your public key has been saved in /home/waynezhu/.ssh/id_rsa.pub.
+The key fingerprint is:
+da:0c:2b:39:29:3f:fa:e4:7c:7c:ac:c4:0a:9d:7a:d0 waynezhu@cdhm01
+The key's randomart image is:ssh-keygen	
