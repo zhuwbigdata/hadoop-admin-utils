@@ -1,0 +1,54 @@
+README
+Install JCE to $JAVA_HOME/lib/security/.
+Install two packages for kerberos on all hosts:
+[waynezhu@cdhsn ~]$ sudo yum install krb5-workstation
+Loaded plugins: fastestmirror, langpacks
+base                                                                                            | 3.6 kB  00:00:00
+cloudera-manager                                                                                |  951 B  00:00:00
+extras                                                                                          | 3.4 kB  00:00:00
+mysql-connectors-community                                                                      | 2.5 kB  00:00:00
+mysql-tools-community                                                                           | 2.5 kB  00:00:00
+mysql56-community                                                                               | 2.5 kB  00:00:00
+openlogic                                                                                       | 1.3 kB  00:00:00
+updates                                                                                         | 3.4 kB  00:00:00
+mysql-tools-community/x86_64/primary_db                                                         |  29 kB  00:00:00
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--> Running transaction check
+---> Package krb5-workstation.x86_64 0:1.13.2-12.el7_2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=======================================================================================================================
+ Package                          Arch                   Version                         Repository               Size
+=======================================================================================================================
+Installing:
+ krb5-workstation                 x86_64                 1.13.2-12.el7_2                 updates                 765 k
+
+Transaction Summary
+=======================================================================================================================
+Install  1 Package
+
+Total download size: 765 k
+Installed size: 2.4 M
+Is this ok [y/d/N]: y
+Downloading packages:
+krb5-workstation-1.13.2-12.el7_2.x86_64.rpm                                                     | 765 kB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : krb5-workstation-1.13.2-12.el7_2.x86_64                                                             1/1
+  Verifying  : krb5-workstation-1.13.2-12.el7_2.x86_64                                                             1/1
+
+Installed:
+  krb5-workstation.x86_64 0:1.13.2-12.el7_2
+
+Complete!
+[waynezhu@cdhsn ~]$ sudo yum install krb5-libs
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+Package krb5-libs-1.13.2-12.el7_2.x86_64 already installed and latest version
+Nothing to do
+
