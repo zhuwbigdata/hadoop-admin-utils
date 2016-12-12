@@ -10,5 +10,4 @@ check_usage() {
 }
 check_usage $*
 echo "CREATE DATABASE  ${1} DEFAULT CHARACTER SET utf8;"
-echo "GRANT ALL ON ${1}.* TO '${2}'@'%' IDENTIFIED BY '${2}1234';"
-echo "EXIT;"
+echo "GRANT ALL ON ${1}.* TO '${2}'@'%' IDENTIFIED BY '${2}';"
