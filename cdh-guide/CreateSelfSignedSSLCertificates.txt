@@ -1,5 +1,7 @@
 README
-Reference: http://www.cloudera.com/documentation/enterprise/latest/topics/sg_self_signed_tls.html
+Reference: 
+http://www.cloudera.com/documentation/enterprise/latest/topics/sg_self_signed_tls.html
+http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_tls_browser.html
 Notes: not recommended for production
 Goal: 
 1. Create host based JKS to store public-private keypair.
@@ -13,24 +15,9 @@ Here is the instruction for single node CDH cluster:
 1. Create the directories for the certificates: 
 [waynezhu@cdhsn ~]$ sudo mkdir -p /opt/cloudera/security/x509/ /opt/cloudera/security/jks/
 
-2. Generate the key pair and self-signed certificate valid for 10 years.
+2. Generate the key pair and self-signed certificate valid for 10 years with CN=FQHN
 [waynezhu@cdhsn ~]$ cd /opt/cloudera/security/jks
-[waynezhu@cdhsn jks]$ sudo keytool -genkeypair -keystore cdhsn.jks -alias cdhsn  -keyalg RSA -keysize 2048 -validity 3650 -storepass changeme -keypass changeme
-What is your first and last name?
-  [Unknown]:  Wayne Zhu
-What is the name of your organizational unit?
-  [Unknown]:  DevOps
-What is the name of your organization?
-  [Unknown]:  Cloudera
-What is the name of your City or Locality?
-  [Unknown]:  Chicago
-What is the name of your State or Province?
-  [Unknown]:  Illinois
-What is the two-letter country code for this unit?
-  [Unknown]:  US
-Is CN=Wayne Zhu, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US correct?
-  [no]:  yes
-Or with -dname "CN=Wayne Zhu, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US" to skip.
+[waynezhu@cdhsn jks]$ sudo keytool -genkeypair -keystore cdhsn.jks -alias cdhsn  -keyalg RSA -keysize 2048 -validity 3650 -dname "CN=cdhsn, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US" -storepass changeme -keypass changeme
 
 3. Copy default Java truststore (cacerts) to  the alternative (jssecacerts). 
 [waynezhu@cdhsn jks]$ echo $JAVA_HOME
@@ -47,29 +34,29 @@ Certificate stored in file <cdhsn-selfsigned.cer>keytool -export -alias cdhsn -k
 
 6. Import the public key into the alternative  truststore (jssecacerts). 
 [waynezhu@cdhsn jks]$ sudo keytool -import -alias cdhsn -file /opt/cloudera/security/jks/cdhsn-selfsigned.cer -keystore $JAVA_HOME/jre/lib/security/jssecacerts -storepass changeit
-Owner: CN=Wayne Zhu, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US
-Issuer: CN=Wayne Zhu, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US
-Serial number: 3bd6d9c7
-Valid from: Mon Dec 12 15:35:23 UTC 2016 until: Thu Dec 10 15:35:23 UTC 2026
+Owner: CN=cdhsn, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US
+Issuer: CN=cdhsn, OU=DevOps, O=Cloudera, L=Chicago, ST=Illinois, C=US
+Serial number: 79103186
+Valid from: Mon Dec 12 18:22:37 UTC 2016 until: Thu Dec 10 18:22:37 UTC 2026
 Certificate fingerprints:
-      MD5:  AB:72:03:EF:5F:2C:A1:61:C3:B2:C0:37:CE:91:EE:C3
-      SHA1: 65:C5:82:35:D4:16:9F:DB:17:13:75:BB:E8:42:3C:CE:3C:29:8E:66
-      SHA256: A6:45:BC:C7:F0:DF:D1:2A:F4:BF:D3:EE:2D:07:F4:A0:2D:6D:79:A4:CE:EC:6F:1A:7D:AF:CB:CA:B8:D1:F9:4B
-      Signature algorithm name: SHA256withRSA
-      Version: 3
+	 MD5:  58:17:50:EB:37:11:A8:5C:0F:1D:C0:95:7E:56:63:2A
+	 SHA1: 83:FA:A8:03:18:49:57:5D:74:FA:BA:65:1D:AA:82:BC:82:D4:1B:06
+	 SHA256: 52:E8:36:6A:AC:64:D3:17:15:04:64:AC:4A:AC:DF:3F:59:5D:89:A9:7C:52:44:36:D7:15:C8:A5:52:8D:D7:BD
+	 Signature algorithm name: SHA256withRSA
+	 Version: 3
 
 Extensions:
 
 #1: ObjectId: 2.5.29.14 Criticality=false
 SubjectKeyIdentifier [
 KeyIdentifier [
-0000: 76 43 83 03 52 5C D8 0E   9E 82 D3 CA 5C FB F1 AC  vC..R\......\...
-0010: EE FB A7 64                                        ...d
+0000: F5 A8 00 04 EF E6 B2 AB   79 CA 55 3F DE 05 E2 F1  ........y.U?....
+0010: B6 E1 5A 58                                        ..ZX
 ]
 ]
 
 Trust this certificate? [no]:  yes
-Certificate was added to keystone
+Certificate was added to keystore
 
 7. Grant Cloudera Manager access to /opt/cloudera/security/jks
 $ sudo chown -R cloudera-scm:cloudera-scm /opt/cloudera/security/jks
