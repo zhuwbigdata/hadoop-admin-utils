@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "SELINUX should be permissive or disabled. See details in /etc/selinux/config"
-getenforce
+/usr/sbin/getenforce

@@ -1,0 +1,10 @@
+grant all on scm.*    to 'scm'@'%'    identified by '<cm server password>';
+grant all on amon.*   to 'amon'@'%'   identified by '<cm activity monitor password>';
+grant all on rman.*   to 'rman'@'%'   identified by '<cm reports manager password>';
+grant all on hive.*   to 'hive'@'%'   identified by '<hive password>';
+grant all on hue.*    to 'hue'@'%'    identified by '<hue password>';
+grant all on nav.*    to 'nav'@'%'    identified by '<navigator audit password>';
+grant all on navms.*  to 'navms'@'%'  identified by '<navigator metadata password>';
+grant all on oozie.*  to 'oozie'@'%'  identified by '<oozie password>';
+grant all on sentry.* to 'sentry'@'%' identified by '<sentry password>';
+flush privileges;

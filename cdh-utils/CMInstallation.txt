@@ -1,0 +1,107 @@
+README
+1. Install repo for CM
+[waynezhu@cdhm01 dns-utils]$ wget https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo
+--2016-11-28 14:18:47--  https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/cloudera-manager.repo
+Resolving archive.cloudera.com (archive.cloudera.com)... 151.101.48.167
+Connecting to archive.cloudera.com (archive.cloudera.com)|151.101.48.167|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 290
+Saving to: ‘cloudera-manager.repo’
+100%[=============================================================================>] 290         --.-K/s   in 0s
+2016-11-28 14:18:47 (70.9 MB/s) - ‘cloudera-manager.repo’ saved [290/290]
+
+[waynezhu@cdhm01 dns-utils]$ sudo cp cloudera-manager.repo /etc/yum.repos.d/
+
+
+2. Install RPMs
+[waynezhu@cdhm01 dns-utils]$ sudo yum install cloudera-manager-daemons cloudera-manager-server
+Loaded plugins: fastestmirror, langpacks
+base                                                                                            | 3.6 kB  00:00:00
+cloudera-manager                                                                                |  951 B  00:00:00
+extras                                                                                          | 3.4 kB  00:00:00
+mysql-connectors-community                                                                      | 2.5 kB  00:00:00
+mysql-tools-community                                                                           | 2.5 kB  00:00:00
+mysql57-community                                                                               | 2.5 kB  00:00:00
+openlogic                                                                                       | 1.3 kB  00:00:00
+updates                                                                                         | 3.4 kB  00:00:00
+cloudera-manager/primary                                                                        | 4.3 kB  00:00:00
+Loading mirror speeds from cached hostfile
+cloudera-manager                                                                                                   7/7
+Resolving Dependencies
+--> Running transaction check
+---> Package cloudera-manager-daemons.x86_64 0:5.9.0-1.cm590.p0.249.el7 will be installed
+---> Package cloudera-manager-server.x86_64 0:5.9.0-1.cm590.p0.249.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=======================================================================================================================
+ Package                           Arch            Version                             Repository                 Size
+=======================================================================================================================
+Installing:
+ cloudera-manager-daemons          x86_64          5.9.0-1.cm590.p0.249.el7            cloudera-manager          513 M
+ cloudera-manager-server           x86_64          5.9.0-1.cm590.p0.249.el7            cloudera-manager          8.3 k
+
+Transaction Summary
+=======================================================================================================================
+Install  2 Packages
+
+Total download size: 513 M
+Installed size: 679 M
+Is this ok [y/d/N]:   y
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/cloudera-manager/packages/cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID e8f86acd: NOKEY
+Public key for cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64.rpm is not installed
+(1/2): cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64.rpm                              | 8.3 kB  00:00:00
+(2/2): cloudera-manager-daemons-5.9.0-1.cm590.p0.249.el7.x86_64.rpm                             | 513 MB  00:00:07
+-----------------------------------------------------------------------------------------------------------------------
+Total                                                                                   65 MB/s | 513 MB  00:00:07
+Retrieving key from https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera
+Importing GPG key 0xE8F86ACD:
+ Userid     : "Yum Maintainer <webmaster@cloudera.com>"
+ Fingerprint: 5f14 d39e f068 1aca 6f04 4a43 f90c 0d8f e8f8 6acd
+ From       : https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera
+Is this ok [y/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/cloudera-manager/packages/cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID e8f86acd: NOKEY
+Public key for cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64.rpm is not installed
+(1/2): cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64.rpm                              | 8.3 kB  00:00:00
+(2/2): cloudera-manager-daemons-5.9.0-1.cm590.p0.249.el7.x86_64.rpm                             | 513 MB  00:00:07
+-----------------------------------------------------------------------------------------------------------------------
+Total                                                                                   65 MB/s | 513 MB  00:00:07
+Retrieving key from https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera
+Importing GPG key 0xE8F86ACD:
+ Userid     : "Yum Maintainer <webmaster@cloudera.com>"
+ Fingerprint: 5f14 d39e f068 1aca 6f04 4a43 f90c 0d8f e8f8 6acd
+ From       : https://archive.cloudera.com/cm5/redhat/7/x86_64/cm/RPM-GPG-KEY-cloudera
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Warning: RPMDB altered outside of yum.
+  Installing : cloudera-manager-daemons-5.9.0-1.cm590.p0.249.el7.x86_64                                            1/2
+  Installing : cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64                                             2/2
+  Verifying  : cloudera-manager-server-5.9.0-1.cm590.p0.249.el7.x86_64                                             1/2
+  Verifying  : cloudera-manager-daemons-5.9.0-1.cm590.p0.249.el7.x86_64                                            2/2
+Installed:
+  cloudera-manager-daemons.x86_64 0:5.9.0-1.cm590.p0.249.el7 cloudera-manager-server.x86_64 0:5.9.0-1.cm590.p0.249.el7
+Complete!
+
+3. Prepare external DB 
+[waynezhu@cdhm01 ~]$ sudo /usr/share/cmf/schema/scm_prepare_database.sh -h cdhm01 mysql scm scm 
+JAVA_HOME=/usr/java/jdk1.8.0_111
+Verifying that we can write to /etc/cloudera-scm-server
+Creating SCM configuration file in /etc/cloudera-scm-server
+Executing:  /usr/java/jdk1.8.0_111/bin/java -cp /usr/share/java/mysql-connector-java.jar:/usr/share/java/oracle-connector-java.jar:/usr/share/cmf/schema/../lib/* com.cloudera.enterprise.dbutil.DbCommandExecutor /etc/cloudera-scm-server/db.properties com.cloudera.cmf.db.
+Mon Nov 28 16:11:02 UTC 2016 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+[                          main] DbCommandExecutor              INFO  Successfully connected to database.
+All done, your SCM database is configured correctly!
+
+4. Start CM 
+[waynezhu@cdhm01 cdh-utils]$ sudo service cloudera-scm-server start
+Starting cloudera-scm-server (via systemctl):              [  OK  ]
+
+5. Login with default admin and password on  http://${CM_HOST}:7180/cmf/login
+

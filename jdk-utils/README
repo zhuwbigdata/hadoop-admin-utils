@@ -1,2 +1,5 @@
 README
 sudo rpm -ivh jdk-8u111-linux-x64.rpm
+sudo vim /etc/profile 
+and add “export JAVA_HOME=/usr/java/default”
+download jce8 zip and copy to $JAVA_HOME/lib/security
