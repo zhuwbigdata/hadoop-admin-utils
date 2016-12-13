@@ -1,14 +1,25 @@
 README
 Reference: 
 http://www.cloudera.com/documentation/enterprise/latest/topics/sg_self_signed_tls.html
+
+CM as TLS/SSL server 
 http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_tls_browser.html
+
+NAVIGATOR as SSL server 
+http://www.cloudera.com/documentation/enterprise/latest/topics/sg_nav_ssl.html
+
+HUE as TLS/SSL serverr
+http://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_ssl_hue.html
+
+Private Key and Certificate Reuse Across Java Keystores and OpenSSL
+https://www.cloudera.com/documentation/enterprise/latest/topics/cm_sg_openssl_jks.html#concept_ek3_sdl_rp
+
+
+
 Notes: not recommended for production
 Goal: 
-1. Create host based JKS to store public-private keypair.
+1. Create JKS to store public-private keypair per host.
 2. Import the public key to the alternative key truststore.
-
-
-
 
 
 Here is the instruction for single node CDH cluster:
