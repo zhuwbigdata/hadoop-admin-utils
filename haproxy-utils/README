@@ -1,0 +1,27 @@
+README
+Add the following to  /etc/haproxy/haproxy.cfg to enble OOZIE HA and Impala Daemon HA. 
+frontend oozie
+    bind *:11000
+    default_backend oozie_servers
+    mode http
+    option httplog
+backend oozie_servers
+    balance roundrobin
+    mode http
+    option httplog
+    server oozie_1 $OOZIE_HOST1:11000 check
+    server oozie_2 $OOZIE_HOST2:11000 check
+
+frontend impala
+    bind *:21000
+    default_backend impala_servers
+    mode tcp
+    option tcplog
+backend impala_servers
+    balance roundrobin
+    mode tcp
+    option tcplog
+    server impala_1 $IMPALAD_HOST1:21000 check
+    server impala_2 $IMPALAD_HOST2:21000 check
+    server impala_3 $IMPALAD_HOST3:21000 check
+
