@@ -1,2 +1,2 @@
 #!/bin/bash
-firewall-cmd --get-default-zone
+sudo firewall-cmd --get-default-zone

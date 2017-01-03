@@ -1,2 +1,2 @@
 #!/bin/bash
-firewall-cmd --get-active-zones
+sudo firewall-cmd --get-active-zones

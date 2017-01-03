@@ -1,0 +1,4 @@
+README
+CentOS 7 
+Zones: drop, block, public, external, internal, dmz, work, home, trusted.
+Configuration can be found /etc/firewalld/zones/public.xml.

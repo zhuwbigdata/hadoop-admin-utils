@@ -1,2 +1,2 @@
 #!/bin/bash
-firewall-cmd --state
+sudo firewall-cmd --state
