@@ -1,4 +1,7 @@
 README
 CentOS 7 
 Zones: drop, block, public, external, internal, dmz, work, home, trusted.
-Configuration can be found /etc/firewalld/zones/public.xml.
+Configuration can be found /etc/firewalld/zones/$ZONE_TYPE.xml.
+Examples:
+$ sudo  firewall-cmd --add-port=[RANGE: 100-101]/udp --zone=public --permanent
+$ sudo  firewall-cmd --add-port=$PORT_NUMBER/tdp --zone=public --permanent
