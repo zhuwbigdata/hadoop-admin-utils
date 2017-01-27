@@ -72,3 +72,17 @@ Certificate was added to keystore
 7. Grant Cloudera Manager access to /opt/cloudera/security/jks
 $ sudo chown -R cloudera-scm:cloudera-scm /opt/cloudera/security/jks
 [waynezhu@cdhsn jks]$ sudo chown -R cloudera-scm:cloudera-scm /opt/cloudera/security/jks
+
+
+Notes on HUE SSL server:
+Since HUE is written in Python, it can't use JKS directory. The key pair has to be exported to PKCS12 key store first,
+and then use openssl to split the public key and the private key. 
+1. $ keytoolExportJKSKeyPairByAliasToPKCS12.sh /opt/cloudera/security/jks/cdhsn.jks changeme changeme cdhsn.p12 cdhsn changeme changeme
+2. $ opensslConvertCertificateFromPKCS12ToPEM.sh cdhsn.p12 changeme cdsn_certificate.pem
+3. $ opensslConvertPrivateKeyFromPKCS12ToPEM.sh cdhsn.p12 changeme cdhsn_privatekey.pem changeme
+
+
+
+
+
+
