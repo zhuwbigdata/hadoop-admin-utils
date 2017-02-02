@@ -1,8 +1,7 @@
 #!/bin/bash
 CM_SERVER=$(uname -n)
-CM_CLUSER=sandbox
+CM_CLUSTER=sandbox
 export CM_SERVER;
-export CM_CLUSER;
 export CM_PORT=7180
 export CM_VERSION=v13
 export CM_CLUSTER=Cloudera%20QuickStart

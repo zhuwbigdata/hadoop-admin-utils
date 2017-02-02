@@ -4,6 +4,7 @@ check_usage() {
   then
     echo "Usage:"
     echo "$0 <PRODUCT,e.g. SPARK> <VERSION>"
+    echo "Parcel State: DOWNLOADED,DISTRIBUTED,ACTIVATING,ACTIVATED"
     exit 1
   fi
 }

@@ -169,4 +169,9 @@ tier1.sinks.sink1.hdfs.fileType=DataStream
 tier1.sinks.sink1.channel=channel1
 
 
-
+5. Download, distribute, active parcels
+./getCMClusterParcelByProductAndVersion.sh SPARK2 2.0.0.cloudera1-1.cdh5.7.0.p0.113931
+./downloadParcelCMByProductAndVersion.sh SPARK2 2.0.0.cloudera1-1.cdh5.7.0.p0.113931
+./distributeParcelCMByProductAndVersion.sh  SPARK2 2.0.0.cloudera1-1.cdh5.7.0.p0.113931
+./activateParcelCMByProductAndVersion.sh  SPARK2 2.0.0.cloudera1-1.cdh5.7.0.p0.113931
+./getParcelCMByProductAndVersion.sh SPARK2 2.0.0.cloudera1-1.cdh5.7.0.p0.113931
