@@ -12,4 +12,4 @@ check_usage $*
 
 BASE_DIR=$(dirname $0)
 source $BASE_DIR/setenv.sh
-echo "mysqldump --host=$CM_DB_HOST --port=$CM_DB_PORT  --user=$1 --password=$2 $3 > /tmp/${3}-backup.sql"
+mysqldump --host=$CM_DB_HOST --port=$CM_DB_PORT  --user=$1 --password=$2 $3 > /tmp/${3}-backup.sql
