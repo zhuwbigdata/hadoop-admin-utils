@@ -1,9 +1,18 @@
 #!/bin/bash
-CM_SERVER=$(uname -n)
-CM_CLUSTER=sandbox
-export CM_SERVER;
-export CM_PORT=7180
-export CM_VERSION=v13
-export CM_CLUSTER=Cloudera%20QuickStart
+export CM_CLUSTER=
+export CM_VERSION=v14
+export CM_SERVER=
 export CM_ADMIN=admin
 export CM_PASS=$(cat admin.pass)
+export CM_DB_HOST=
+export CM_DB_PORT=3306
+export TLS_ENABLED=true
+if [ "$TLS_ENALBED" = true ]; then
+  export CM_PORT=7180
+  export CURL_CMD=curl
+  export HTTP_PROTOCOL=http
+else
+  export CM_PORT=7183
+  export CURL_CMD='curl -k'
+  export HTTP_PROTOCOL=https
+fi
