@@ -18,4 +18,4 @@ generate_post_data()
 { "items": [ { "name": "$1", "type": "$2" } ] }
 EOF
 }
-curl -u "${CM_ADMIN}:${CM_PASS}" -H "Content-Type:application/json" -d "$(generate_post_data $1 $2)" -i -X POST http://${CM_SERVER}:${CM_PORT}/api/${CM_VERSION}/clusters/${CM_CLUSTER}/services
+${CURL_CMD} -u "${CM_ADMIN}:${CM_PASS}" -H "Content-Type:application/json" -d "$(generate_post_data $1 $2)" -i -X POST ${HTTP_PROTOCOL}://${CM_SERVER}:${CM_PORT}/api/${CM_VERSION}/clusters/${CM_CLUSTER}/services

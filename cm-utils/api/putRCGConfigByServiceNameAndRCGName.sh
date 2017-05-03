@@ -11,7 +11,7 @@ check_usage $*
 
 BASE_DIR=$(dirname $0)
 source $BASE_DIR/setenv.sh
-URL=http://${CM_SERVER}:${CM_PORT}/api/${CM_VERSION}/clusters/${CM_CLUSTER}/services/$1/roleConfigGroups/$2/config 
+URL=${HTTP_PROTOCOL}://${CM_SERVER}:${CM_PORT}/api/${CM_VERSION}/clusters/${CM_CLUSTER}/services/$1/roleConfigGroups/$2/config 
 CONF=\'$(cat $3)\'
-eval curl -X PUT -u "${CM_ADMIN}:${CM_PASS}" -H \"content-type:application/json\" \
+eval ${CURL_CMD} -X PUT -u "${CM_ADMIN}:${CM_PASS}" -H \"content-type:application/json\" \
 -d $CONF $URL
