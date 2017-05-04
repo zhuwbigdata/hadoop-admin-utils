@@ -11,4 +11,4 @@ check_usage $*
 
 BASE_DIR=$(dirname $0)
 #source $BASE_DIR/../bin/setenv.sh
-/bin/spark-shell --master yarn --deploy-mode client  --driver-java-options=-Dspark.yarn.am.port=$1
+spark-shell --master yarn --deploy-mode client  --driver-java-options=-Dspark.yarn.am.port=$1
