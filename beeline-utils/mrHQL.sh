@@ -12,7 +12,7 @@ check_usage $*
 BASE_DIR=$(dirname $0)
 source $BASE_DIR/../bin/setenv.sh
 if [ "$KRB_ENABLED" = true ]; then
-  beeline -u $BEELINE_JDBC_URL --verbose=true --hiveconf hive.execution.engine=mr --hiveconf USER=$(whoami) --force=false --showWarnings=true --showNestedErrs=true -f $1 
+  beeline -u $BEELINE_JDBC_URL --verbose=true --hiveconf hive.execution.engine=mr --hiveconf USER=$(whoami) --hiveconf mapreduce.queue.name=default --force=false --showWarnings=true --showNestedErrs=true -f $1 
 else
-  beeline -n $(whoami) -p $(cat mypass) -u $BEELINE_JDBC_URL --verbose=true --hiveconf hive.execution.engine=mr --hiveconf USER=$(whoami) --force=false --showWarnings=true --showNestedErrs=true -f $1 
+  beeline -n $(whoami) -p $(cat mypass) -u $BEELINE_JDBC_URL --verbose=true --hiveconf hive.execution.engine=mr --hiveconf USER=$(whoami)  --hiveconf mapreduce.queue.name=default --force=false --showWarnings=true --showNestedErrs=true -f $1 
 fi
