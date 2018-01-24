@@ -1,4 +1,5 @@
 Notes
+Wayne Zhu
 Sentry User Group Mapping (hadoop.security.group.mapping)
 Use HadoopUserGroupMapping - Shell (recommended) or LDAP
 Sentry doesn't do user group mapping by itself. However, 
