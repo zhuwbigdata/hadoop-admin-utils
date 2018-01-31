@@ -1,0 +1,16 @@
+Notes
+Wayne Zhu
+-------------------------------------------------------------------------------------
+HDFS Superuser Group (dfs.permissions.supergroup, dfs.permissions.superusergroup)
+CM -> HDFS ->  Configuration -> Superuser Groups
+-------------------------------------------------------------------------------------
+Sentry User Group Mapping (hadoop.security.group.mapping)
+Use HadoopUserGroupMapping - Shell (recommended) or LDAP
+Sentry doesn't do user group mapping by itself. However, 
+Ranger (HDP) is more flexible, allowing manual upload user
+group mapping. 
+-------------------------------------------------------------------------------------
+Enable Sentry Admin Groups (sentry.service.admin.group)
+CM -> Sentry -> Configuration -> Admin Groups
+
+
