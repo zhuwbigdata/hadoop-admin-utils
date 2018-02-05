@@ -10,4 +10,5 @@ check_usage() {
 check_usage $*
 BASE_DIR=$(dirname $0)
 source $BASE_DIR/../bin/setenv.sh
+
 cat $1 | $SPARK_HOME/bin/spark-shell; stty echo
