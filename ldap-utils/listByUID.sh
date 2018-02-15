@@ -12,4 +12,5 @@ check_usage $*
 
 BASE_DIR=$(dirname $0)
 source $BASE_DIR/setenv.sh
+echo  ${LDAP_CMD} -b \'$1\' uid=\'$2\'
 eval ${LDAP_CMD} -b \'$1\' uid=\'$2\'
