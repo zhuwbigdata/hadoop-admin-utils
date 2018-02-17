@@ -21,9 +21,11 @@ i=0
 while [ ${i} -lt ${index} ]; do
   user=${users[${i}]}
   group=${groups[${i}]}
-  for j in ${ALL_NODES}; do
-    ssh -n ${j} "sudo /usr/sbin/useradd -g $group -m $user";
-  done
+  echo $user  " " $group
+  sudo useradd -G $group  $user
+  #for j in ${ALL_NODES}; do
+  #   ssh -n ${j} "sudo /usr/sbin/useradd -g $group -m $user";
+  #done
   i=$((${i}+1))
 done		 
 
