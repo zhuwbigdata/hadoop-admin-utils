@@ -123,17 +123,17 @@ for s in cdh_cluster.get_all_services():
 
 
 if __name__ == "__main__":
-  parser = argparse.ArgumentParser(description='Create a ArcHydro schema')
-  parser.add_argument('--cm_host', metavar='path', required=True,
+  parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
+  parser.add_argument('cm_host', metavar='path', required=True,
                         help='Cloudera Manager FQHN')
-  parser.add_argument('--cm_user_name', metavar='path', required=True,
+  parser.add_argument('cm_user_name', metavar='path', required=True,
                         help='Cloudera Manager User Name (admin/clusteradmin)')
-  parser.add_argument('--cm_user_password', metavar='path', required=True,
+  parser.add_argument('cm_user_password', metavar='path', required=True,
                         help='Cloudera Manager User Password')
-  parser.add_argument('--cm_cluster_name', metavar='path', required=True,
+  parser.add_argument('cm_cluster_name', metavar='path', required=True,
                         help='Cloudera Manager Cluster Name')
   args = parser.parse_args()
-  main(cmHost = args.cm_host, 
-       cmUserName = args.cm_user_name, 
-       cmUserPassword = args.cm_user_password,
-       cmClusterName = args.cm_cluster_name)
+  main(cm_host = args.cm_host, 
+       cm_user_name = args.cm_user_name, 
+       cm_user_password = args.cm_user_password,
+       cm_cluster_cluster = args.cm_cluster_name)
