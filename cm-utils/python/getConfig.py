@@ -9,13 +9,13 @@ from cm_api.endpoints.services import ApiService, ApiServiceSetupInfo
 
 
 
-def main(cm_host, cm_user_login, cm_user_passwd, cluster_name):
+def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
   #cm_host = 'localhost'
   #cm_user_login  = 'cmnjro'
   #cm_user_passwd = 'John3:16'
   #cm_api_version = 18
   #cluster_name = 'cluster'
-
+  print cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name
   zk_service_type = 'ZOOKEEPER'
   zk_service_role_type_server = 'SERVER'
   hdfs_service_type = 'HDFS'
@@ -39,7 +39,7 @@ SERVICE_ROLE_MAP = {
 
 #context = ssl.create_default_context(cafile='/opt/cloudera/security/certs/ChainedCA.cert.pem')
 #api = ApiResource(cm_host, username=cm_user_login, password=cm_user_passwd, version=cm_api_version, use_tls=True, ssl_context=context)
-api = ApiResource(server_host=cm_host, username=cm_user_login, password=cm_user_passwd)
+api = ApiResource(server_host=cm_fqhn, username=cm_user_login, password=cm_user_passwd)
 
 # Get a list of all clusters
 cdh_cluster = None
@@ -121,7 +121,6 @@ for s in cdh_cluster.get_all_services():
     for x in oozie_host_list:
       print x
 
-
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
   parser.add_argument('--cm_fqhn', required=True,
@@ -133,7 +132,8 @@ if __name__ == "__main__":
   parser.add_argument('--cm_cluster_name', required=True,
                         help='Cloudera Manager Cluster Name')
   args = parser.parse_args()
-  main(cm_host = args.cm_fqhn, 
+  print args
+  main(cm_fqhn = args.cm_fqhn, 
        cm_user_name = args.cm_user_name, 
        cm_user_password = args.cm_user_password,
-       cm_cluster_cluster = args.cm_cluster_name)
+       cm_cluster_name = args.cm_cluster_name)
