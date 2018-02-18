@@ -11,6 +11,10 @@ from cm_api.endpoints.services import ApiService, ApiServiceSetupInfo
 
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
   print cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name
+  api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)  
+
+
+
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
