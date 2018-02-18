@@ -39,7 +39,7 @@ SERVICE_ROLE_MAP = {
 
 #context = ssl.create_default_context(cafile='/opt/cloudera/security/certs/ChainedCA.cert.pem')
 #api = ApiResource(cm_host, username=cm_user_login, password=cm_user_passwd, version=cm_api_version, use_tls=True, ssl_context=context)
-api = ApiResource(cm_host, username=cm_user_login, password=cm_user_passwd)
+api = ApiResource(server_host=cm_host, username=cm_user_login, password=cm_user_passwd)
 
 # Get a list of all clusters
 cdh_cluster = None
@@ -124,13 +124,13 @@ for s in cdh_cluster.get_all_services():
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
-  parser.add_argument('cm_host', metavar='path', required=True,
+  parser.add_argument('--cm_host', required=True,
                         help='Cloudera Manager FQHN')
-  parser.add_argument('cm_user_name', metavar='path', required=True,
+  parser.add_argument('--cm_user_name', required=True,
                         help='Cloudera Manager User Name (admin/clusteradmin)')
-  parser.add_argument('cm_user_password', metavar='path', required=True,
+  parser.add_argument('--cm_user_password', required=True,
                         help='Cloudera Manager User Password')
-  parser.add_argument('cm_cluster_name', metavar='path', required=True,
+  parser.add_argument('--cm_cluster_name', required=True,
                         help='Cloudera Manager Cluster Name')
   args = parser.parse_args()
   main(cm_host = args.cm_host, 
