@@ -124,7 +124,7 @@ for s in cdh_cluster.get_all_services():
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
-  parser.add_argument('--cm_host', required=True,
+  parser.add_argument('--cm_fqhn', required=True,
                         help='Cloudera Manager FQHN')
   parser.add_argument('--cm_user_name', required=True,
                         help='Cloudera Manager User Name (admin/clusteradmin)')
@@ -133,7 +133,7 @@ if __name__ == "__main__":
   parser.add_argument('--cm_cluster_name', required=True,
                         help='Cloudera Manager Cluster Name')
   args = parser.parse_args()
-  main(cm_host = args.cm_host, 
+  main(cm_host = args.cm_fqhn, 
        cm_user_name = args.cm_user_name, 
        cm_user_password = args.cm_user_password,
        cm_cluster_cluster = args.cm_cluster_name)
