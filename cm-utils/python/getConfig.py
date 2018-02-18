@@ -3,31 +3,27 @@
 import ssl
 import sys
 import pprint
+import argparse
 from cm_api.api_client import ApiResource, ApiException
 from cm_api.endpoints.services import ApiService, ApiServiceSetupInfo
 
 
 
+def main(cm_host, cm_user_login, cm_user_passwd, cluster_name):
+  #cm_host = 'localhost'
+  #cm_user_login  = 'cmnjro'
+  #cm_user_passwd = 'John3:16'
+  #cm_api_version = 18
+  #cluster_name = 'cluster'
 
-
-
-def main():
-    # print command line arguments
-    for arg in sys.argv[1:]:
-        print arg
-cm_host = 'localhost'
-cm_user_login  = 'cmnjro'
-cm_user_passwd = 'John3:16'
-cm_api_version = 18
-cluster_name = 'cluster'
-zk_service_type = 'ZOOKEEPER'
-zk_service_role_type_server = 'SERVER'
-hdfs_service_type = 'HDFS'
-hdfs_service_role_type_namenode = 'NAMENODE'
-yarn_service_type = 'YARN'
-yarn_service_role_type_namenode = 'RESOURCEMANAGER'
-oozie_service_type = 'OOZIE'
-oozie_service_role_type_server = 'OOZIE_SERVER'
+  zk_service_type = 'ZOOKEEPER'
+  zk_service_role_type_server = 'SERVER'
+  hdfs_service_type = 'HDFS'
+  hdfs_service_role_type_namenode = 'NAMENODE'
+  yarn_service_type = 'YARN'
+  yarn_service_role_type_namenode = 'RESOURCEMANAGER'
+  oozie_service_type = 'OOZIE'
+  oozie_service_role_type_server = 'OOZIE_SERVER'
 
 SERVICE_ROLE_MAP = {
     'zookeeper': 'ZOOKEEPER-SERVER-BASE',
@@ -127,4 +123,17 @@ for s in cdh_cluster.get_all_services():
 
 
 if __name__ == "__main__":
-    main()
+  parser = argparse.ArgumentParser(description='Create a ArcHydro schema')
+  parser.add_argument('--cm_host', metavar='path', required=True,
+                        help='Cloudera Manager FQHN')
+  parser.add_argument('--cm_user_name', metavar='path', required=True,
+                        help='Cloudera Manager User Name (admin/clusteradmin)')
+  parser.add_argument('--cm_user_password', metavar='path', required=True,
+                        help='Cloudera Manager User Password')
+  parser.add_argument('--cm_cluster_name', metavar='path', required=True,
+                        help='Cloudera Manager Cluster Name')
+  args = parser.parse_args()
+  main(cmHost = args.cm_host, 
+       cmUserName = args.cm_user_name, 
+       cmUserPassword = args.cm_user_password,
+       cmClusterName = args.cm_cluster_name)
