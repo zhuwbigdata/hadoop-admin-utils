@@ -4,3 +4,24 @@ The exist configuration locations only contain client configuration.
 
  
 
+Notes
+CM databases
+-------------------------------------------------------
+Navigator: /etc/cloudera-scm-server/db.mgmt.properties
+CM: /etc/cloudera-scm-server/db.properties
+
+Configuration
+-------------------------------------------------------
+Client: /etc/$HADOOP_COMPONENT, e.g. hive, hadoop, etc.
+Server:  /var/run/cloudera-scm-agent/process
+DB passwords are encrypted.
+Hive conf: 781-hive-HIVEMETASTORE/hive-site.xml
+<name>javax.jdo.option.ConnectionUserName</name>
+<value>hive</value>
+<name>javax.jdo.option.ConnectionPassword</name>
+<value>********</value>
+Oozie conf: 1309-oozie-OOZIE_SERVER/oozie-site.xml (latest directory)
+<name>oozie.service.JPAService.jdbc.username</name>
+<value>oozie</value>
+<name>oozie.service.JPAService.jdbc.password</name>
+<value>********</value>

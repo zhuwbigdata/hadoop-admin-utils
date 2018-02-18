@@ -1,0 +1,37 @@
+Sentry Notes
+Wayne Zhu
+-------------------------------------------------------------------------------------
+https://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_service_config.html
+-------------------------------------------------------------------------------------
+HDFS Superuser Group (dfs.permissions.supergroup, dfs.permissions.superusergroup)
+CM -> HDFS ->  Configuration -> Superuser Groups
+-------------------------------------------------------------------------------------
+Sentry User Group Mapping (hadoop.security.group.mapping)
+Use HadoopUserGroupMapping - Shell (recommended) or LDAP
+Sentry doesn't do user group mapping by itself. However, 
+Ranger (HDP) is more flexible, allowing manual upload user
+group mapping. 
+-------------------------------------------------------------------------------------
+Enable Sentry Admin Groups (sentry.service.admin.group)
+CM -> Sentry -> Configuration -> Admin Groups
+-------------------------------------------------------------------------------------
+Lock down default and no-default hive warehouse directoris as follows:
+mode 771 
+user/group as hive:hive.
+-------------------------------------------------------------------------------------
+HIVE
+HiveServer2 Enable Impersonation set to FALSE
+hive.server2.enable.impersonation, hive.server2.enable.doAs  
+-------------------------------------------------------------------------------------
+YARN
+NodeManager ->  Security
+Add user hive to Allowed System Users
+-------------------------------------------------------------------------------------
+Impala
+Enabled Sentry
+-------------------------------------------------------------------------------------
+HUE
+Configure LDAP to sync users and groups. However, users and groups can be sync'ed 
+independently. Configure users an groups mapping manually. Otherwise, Sentry roles will
+not be shown correctly.
+

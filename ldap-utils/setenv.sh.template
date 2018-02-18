@@ -1,0 +1,11 @@
+#!/bin/bash
+export LDAP_HOST=
+export TLS_ENABLED=false
+if  $TLS_ENABLED ; then
+  export LDAP_PORT=636
+  export LDAP_PROTOCOL=ldaps
+else
+  export LDAP_PORT=389
+  export LDAP_PROTOCOL=ldap
+fi
+export LDAP_CMD="ldapsearch -H ${LDAP_PROTOCOL}://${LDAP_HOST}:${LDAP_PORT}"
