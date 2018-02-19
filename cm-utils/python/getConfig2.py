@@ -90,8 +90,6 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
   
   # Get a list of all clusters
   cdh_cluster = None
-  HOST_ID2NAME_MAP = {}
-  HOST_NAME2ID_MAP = {}
   
   for c in api.get_all_clusters():
     if c.name == cm_cluster_name:
