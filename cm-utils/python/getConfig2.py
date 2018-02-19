@@ -48,6 +48,11 @@ def getServiceByServiceType(clusterRef, service_type):
       service_out = s
   return service_out
 
+def inspectRCGs(serviceRef):
+  service_role_group_list  = serviceRef.get_all_role_config_groups()
+  for x in service_role_group_list:
+    print x
+
 def getRCGByServiceAndRoleType(serviceRef, role_type):
   rcg_out = None
   service_role_group_list  = serviceRef.get_all_role_config_groups()
@@ -58,7 +63,7 @@ def getRCGByServiceAndRoleType(serviceRef, role_type):
   return rcg_out
 
 
-def inspectRCG(rcgRef):
+def inspectKVsInRCG(rcgRef):
   for key, val  in rcgRef.get_config(view='full').items():
     print  'Key:', key, 'Value:', val
  
@@ -137,12 +142,10 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['ZOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
      
-  
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
-      #print 'SERVICE:', hdfs_service.get_config(view='full')
       hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      #inspectRCG(hdfs_nn_rcg)
+      #inspectKVsInRCG(hdfs_nn_rcg)
       hdfs_nn_ns = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
       print 'HDFS NAMENODE NAMESERVICE:', hdfs_nn_ns
       hdfs_nn_port = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_port'])
@@ -158,6 +161,14 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         CONFIG_KEY_VALUE_MAP['NAME_NODE'] = 'hdfs://' + nn_hosts[0] + ':' + hdfs_nn_port
       else:
         CONFIG_KEY_VALUE_MAP['NAME_NODE'] = hdfs_nn_ns
+        
+      #YARN
+      yarn_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['yarn'])
+      inspectRCGs(yarn_service)
+      #hdfs_jt_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
+      #inspectRCG(hdfs_nn_rcg)
+        
+      
         
       # Print all
       print CONFIG_KEY_VALUE_MAP
