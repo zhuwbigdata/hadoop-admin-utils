@@ -22,6 +22,7 @@ SERVICE_ROLE_TYPE_MAP = {
   'namenode':  'NAMENODE',
   'resourcemanager':  'RESOURCEMANAGER',
   'oozie_server': 'OOZIE_SERVER'
+  'hbase_restserver': 'HBASERESTSERVER',
 }
 
 CONFIG_KEY_VALUE_MAP = {
@@ -258,7 +259,10 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
       #HBASE
       hbase_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hbase'])
       #inspectConfigByService(hbase_service)
-      inspectRolesByService(hbase_service)
+      #inspectRolesByService(hbase_service)
+      hbase_rs_rcg = getRCGByServiceAndRoleType(hbase_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver']
+      inspectKVsInRCG(hbase_rs_rcg)
+      
                                            
       # Print all
       print CONFIG_KEY_VALUE_MAP
