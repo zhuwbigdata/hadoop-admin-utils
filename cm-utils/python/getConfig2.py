@@ -132,7 +132,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       if zk_client_port != None:
         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
       zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
-      #print zk_hosts
+      print 'ZOOKEEPER HOSTS:', zk_hosts
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
      
@@ -142,10 +142,11 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #print 'SERVICE:', hdfs_service.get_config(view='full')
       hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
       hdfs_nn_ns = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
-      print hdfs_nn_ns
+      print 'HDFS NAMENODE NAMESERVICE:', hdfs_nn_ns
+      nn_hosts = None
       if hdfs_nn_ns == None:
         nn_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      print nn_hosts
+      print 'HDFS NAMENODE HOSTS:', nn_hosts
       #print CONFIG_KEY_VALUE_MAP
 
 if __name__ == "__main__":
