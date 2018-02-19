@@ -135,7 +135,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
       print 'ZOOKEEPER HOSTS:', zk_hosts
       if len(zk_hosts) > 0:
-         CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
+         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
      
   
       #HDFS
