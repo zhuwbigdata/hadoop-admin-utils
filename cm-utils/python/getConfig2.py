@@ -94,10 +94,15 @@ def getKeyValueByServiceTypeAndRoleType(clusterRef, service_type, role_type, key
                 value_out = val
   return value_out
 
+
+def inspectRolesByService(serviceRef):
+  service_role_list =  serviceRef.get_all_roles()
+  for x in service_role_list:
+    print 'ROLE name:', x.name, 'type:', x.type, 'hostId:', x.hostRef.hostId
+    
+
 def getHostsByServiceAndRoleType(serviceRef, role_type):
   hosts_out = []
-  print serviceRef
-  print role_type
   service_role_list =  serviceRef.get_all_roles()
   for x in service_role_list:
     #print 'ROLE name:', x.name, 'type:', x.type, 'hostId:', x.hostRef.hostId
@@ -167,6 +172,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         
       #YARN
       yarn_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['yarn'])
+      inspectRolesByService(yarn_service)
       #inspectRCGs(yarn_service)
       yarn_jt_rcg      = getRCGByServiceAndRoleType(yarn_service, SERVICE_ROLE_TYPE_MAP['resourcemanager'])
       #inspectKVsInRCG(yarn_jt_rcg)
@@ -177,7 +183,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         CONFIG_KEY_VALUE_MAP['RESOURCEMANAGER_ADDRESS'] = yarn_rm_address
       rm_hosts = getHostsByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['resourcemanager'])
       print 'YARN RESOURCEMANGER HOSTS:', rm_hosts
-      CONFIG_KEY_VALUE_MAP['JOB_TRACKER'] = rm_hosts[0] + ':' + yarn_rm_address
+      #CONFIG_KEY_VALUE_MAP['JOB_TRACKER'] = rm_hosts[0] + ':' + yarn_rm_address
     
         
       # Print all
