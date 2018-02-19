@@ -183,7 +183,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         CONFIG_KEY_VALUE_MAP['RESOURCEMANAGER_ADDRESS'] = yarn_rm_address
       rm_hosts = getHostsByServiceAndRoleType(yarn_service, SERVICE_ROLE_TYPE_MAP['resourcemanager'])
       print 'YARN RESOURCEMANGER HOSTS:', rm_hosts
-      #CONFIG_KEY_VALUE_MAP['JOB_TRACKER'] = rm_hosts[0] + ':' + yarn_rm_address
+      CONFIG_KEY_VALUE_MAP['JOB_TRACKER'] = rm_hosts[0] + ':' + yarn_rm_address
     
         
       # Print all
