@@ -75,11 +75,11 @@ def getKeyValueByServiceTypeAndRoleType(clusterRef, service_type, role_type, key
 def getHostsByServiceAndRoleType(serviceRef, role_type):
   hosts_out = []
   service_role_list =  serviceRef.get_all_roles()
-    for x in service_role_list:
-      #print 'ROLE:', x.type, x.get_config()
-      if x.type == role_type:
-        hosts_out.append(HOST_ID2NAME_MAP[x.hostRef.hostId])
-        #print x.to_json_dict()
+  for x in service_role_list:
+    #print 'ROLE:', x.type, x.get_config()
+    if x.type == role_type:
+      hosts_out.append(HOST_ID2NAME_MAP[x.hostRef.hostId])
+      #print x.to_json_dict()
   return hosts_out
 
 
