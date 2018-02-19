@@ -145,9 +145,15 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       print 'HDFS NAMENODE NAMESERVICE:', hdfs_nn_ns
       nn_hosts = None
       if hdfs_nn_ns == None:
-        nn_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['namenode'])
+        nn_hosts = getHostsByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
       print 'HDFS NAMENODE HOSTS:', nn_hosts
       #print CONFIG_KEY_VALUE_MAP
+        
+        
+        
+        
+        
+        
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
