@@ -48,6 +48,7 @@ CONFIG_PROPERTY_MAP = {
   'oozie_http_port': 'oozie_http_port',
   'oozie_https_port':  'oozie_https_port',
   'oozie_use_ssl':  'oozie_use_ssl',
+  'oozie_load_balancer': 'oozie_load_balancer',
 }
 
 HOST_NAME2ID_MAP = {}
@@ -222,6 +223,10 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       inspectConfigByService(oozie_service)
       oozie_use_ssl = getValueByKeyServiceConfig(oozie_service, CONFIG_PROPERTY_MAP['oozie_use_ssl'])
       print 'OOZIE TLS/SSL:', oozie_use_ssl
+      if oozie_use_ssl == 'true':
+        CONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL'] = 'true'
+      oozie_LB = getValueByKeyServiceConfig(oozie_service, CONFIG_PROPERTY_MAP['oozie_load_balancer'])
+        
       #inspectRolesByService(oozie_service)
       #inspectRCGs(oozie_service)
       oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
@@ -231,13 +236,24 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       if oozie_http_port == None:
         oozie_http_port = CONFIG_KEY_VALUE_MAP['OOZIE_HTTP_PORT']
       if oozie_https_port == None:
-        oozie_https_port = CONFIG_KEY_VALUE_MAP['OOZIE_HTTPS_PORT']
-        
-        
-        
+        oozie_https_port = CONFIG_KEY_VALUE_MAP['OOZIE_HTTPS_PORT']  
       print 'OOOZIE http(s) ports:', oozie_http_port, oozie_https_port
-      rm_hosts = getHostsByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
-      print rm_hosts
+      oozie_hosts = getHostsByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
+      print oozie_hosts
+    
+      
+      if CONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL'] = 'true':
+        if oozie_LB != None:
+          CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'https://' + oozie_LB
+        else:
+          CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'http://' + oozie_hosts[0] + ':' + CONFIG_KEY_VALUE_MAP['OOZIE_HTTPS_PORT'] + '/oozie'
+      else 
+        if oozie_LB != None:
+          CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'http://' + oozie_LB
+        else:
+          CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'http://' + oozie_hosts[0] + ':' + CONFIG_KEY_VALUE_MAP['OOZIE_HTTP_PORT'] + '/oozie
+    
+      
                                            
       # Print all
       print CONFIG_KEY_VALUE_MAP
