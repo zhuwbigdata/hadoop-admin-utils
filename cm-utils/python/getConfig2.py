@@ -16,6 +16,7 @@ SERVICE_TYPE_MAP = {
 
 SERVICE_ROLE_TYPE_MAP = {
   'zookeeper': 'SERVER',
+  'namename':  'NAMENODE',
 }
 
 CONFIG_KEY_VALUE_MAP = {
@@ -114,8 +115,8 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #                                    SERVICE_ROLE_TYPE_MAP['zookeeper'],
       #                                    'clientPort');
       zk_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['zookeeper'])
-      zk_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
-      zk_client_port = geValueByKeyInRCG(zk_rcg, 'clientPort')
+      zk_server_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
+      zk_client_port = geValueByKeyInRCG(zk_server_rcg, 'clientPort')
       if zk_client_port != None:
         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
       zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
@@ -124,7 +125,10 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
       print CONFIG_KEY_VALUE_MAP
   
-
+      #HDFS
+      hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
+      hdfs_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['namenode'])
+      print hdfs_rcg
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
