@@ -17,6 +17,18 @@ SERVICE_TYPE_MAP = {
 SERVICE_ROLE_TYPE_MAP = {
   'zookeeper': 'SERVER',
 }
+
+CONFIG_KEY_VALUE_MAP = {
+  'NAME_NODE': None,                                             
+  'JOB_TRACKER': None,                                                     
+  'OOZIE_URL': None,                                                                                    
+  'ZOOKEEPER_QUORUM': None,                                                               
+  'ZOOKEEPER_PORT': '2181',                                                                      
+  'KAFKA_SECURITY_PROTOCOL', None,                                                             
+  'HBASE_REST_IP': None,                                                                   
+  'HBASE_REST_PORT': None,                                                                   
+  'KAFKA_BROKER': None,                
+}
     
 
 def getKeyValueByServiceTypeAndRoleType(cluster, service_type, role_type, key_in):
@@ -29,10 +41,10 @@ def getKeyValueByServiceTypeAndRoleType(cluster, service_type, role_type, key_in
         if x.roleType == role_type:
           print 'ROLE_GROUP:', 'type:', x.roleType, 'name:', x.name
           for key, val  in x.get_config().items():
-            print  'Key:', key, 'Value:', val
+            #print  'Key:', key, 'Value:', val
             if key == key_in:
                 value_out = val
-    
+   return value_out
 
 
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
@@ -60,10 +72,13 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       print '\nServices:'
       for x in cdh_cluster.get_all_services():
         print x.type
-      getKeyValueByServiceTypeAndRoleType(cdh_cluster, 
+      zk_client_port = getKeyValueByServiceTypeAndRoleType(cdh_cluster, 
                                           SERVICE_TYPE_MAP['zookeeper'], 
                                           SERVICE_ROLE_TYPE_MAP['zookeeper'],
                                           'clientPort');
+      if zk_client_port != None:
+        CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
+      print CONFIG_KEY_VALUE_MAP
         
   
 
