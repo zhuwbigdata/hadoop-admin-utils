@@ -28,7 +28,9 @@ CONFIG_KEY_VALUE_MAP = {
   'NAME_NODE_PORT': '8020',
   'JOB_TRACKER': None,  
   'RESOURCEMANAGER_ADDRESS': '8032',
-  'OOZIE_URL': None,                                                                                    
+  'OOZIE_URL': None,    
+  'OOZIE_HTTP_PORT': '11000',
+  'OOZIE_HTTPS_PORT': '11443',
   'ZOOKEEPER_QUORUM': None,                                                               
   'ZOOKEEPER_PORT': '2181',                                                                      
   'KAFKA_SECURITY_PROTOCOL': None,                                                             
@@ -199,6 +201,13 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #inspectKVsInRCG(oozie_server_rcg)
       oozie_http_port  = geValueByKeyInRCG(oozie_server_rcg, CONFIG_PROPERTY_MAP['oozie_http_port'])
       oozie_https_port = geValueByKeyInRCG(oozie_server_rcg, CONFIG_PROPERTY_MAP['oozie_https_port'])
+      if oozie_http_port == None:
+        oozie_http_port = CONFIG_KEY_VALUE_MAP['OOZIE_HTTP_PORT']
+      if oozie_https_port == None:
+        oozie_https_port = CONFIG_KEY_VALUE_MAP['OOZIE_HTTPS_PORT']
+        
+        
+        
       print 'OOOZIE http(s) ports:', oozie_http_port, oozie_https_port
       rm_hosts = getHostsByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
       print rm_hosts
