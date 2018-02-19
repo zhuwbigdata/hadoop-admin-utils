@@ -12,7 +12,20 @@ from cm_api.endpoints.services import ApiService, ApiServiceSetupInfo
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
   print cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name
   api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)  
-
+  
+  for c in api.get_all_clusters():
+    if c.name == cm_cluster_name:
+    print c
+    cdh_cluster = c
+    for x in cdh_cluster.list_hosts():
+      host_name2id_map[api.get_host(x.hostId).hostname] =  x.hostId
+      host_id2name_map[x.hostId] = api.get_host(x.hostId).hostname
+    for x in cdh_cluster.get_all_services():
+      print x.type
+    for x in host_name2id_map:
+      print  x, host_name2id_map[x]
+    for x in host_id2name_map:
+      print  x, host_id2name_map[x]
 
 
 
