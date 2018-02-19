@@ -52,6 +52,12 @@ CONFIG_PROPERTY_MAP = {
 HOST_NAME2ID_MAP = {}
 HOST_ID2NAME_MAP = {} 
 
+
+def inspectConfigByService(serviceRef):
+  service_config_list = serviceRef.get_config(view='full')
+  for key, value in service_config_list[0].items():
+    print key, value
+        
 def getServiceByServiceType(clusterRef, service_type):
   service_out = None
   for s in clusterRef.get_all_services():
