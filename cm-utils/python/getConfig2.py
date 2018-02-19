@@ -20,7 +20,8 @@ SERVICE_ROLE_TYPE_MAP = {
 }
 
 CONFIG_KEY_VALUE_MAP = {
-  'NAME_NODE': None,                                             
+  'NAME_NODE': None,    
+  'NAME_NODE_PORT': '8020',
   'JOB_TRACKER': None,                                                     
   'OOZIE_URL': None,                                                                                    
   'ZOOKEEPER_QUORUM': None,                                                               
@@ -34,7 +35,7 @@ CONFIG_KEY_VALUE_MAP = {
 CONFIG_PROPERTY_MAP = {
   'zk_client_port': 'clientPort',
   'hdf_nn_ns': 'dfs_federation_namenode_nameservice',
-
+  'hdf_nn_port': 'namenode_port',
 }
 
 HOST_NAME2ID_MAP = {}
@@ -144,12 +145,22 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       inspectRCG(hdfs_nn_rcg)
       hdfs_nn_ns = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
       print 'HDFS NAMENODE NAMESERVICE:', hdfs_nn_ns
-      
+      hdfs_nn_port = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_port'])
+      print 'HDFS NAMENODE PORT:', hdfs_nn_port
+      if hdfs_nn_port == None:
+        hdfs_nn_port = CONFIG_KEY_VALUE_MAP['NAME_NODE_PORT']
+      else: 
+        CONFIG_KEY_VALUE_MAP['NAME_NODE_PORT'] = hdfs_nn_port
       nn_hosts = None
       if hdfs_nn_ns == None:
         nn_hosts = getHostsByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      print 'HDFS NAMENODE HOSTS:', nn_hosts
-      #print CONFIG_KEY_VALUE_MAP
+        print 'HDFS NAMENODE HOSTS:', nn_hosts
+        CONFIG_KEY_VALUE_MAP['NAME_NODE'] = 'hdfs://' + nn_hosts[0] + ':' + hdfs_nn_port
+       else:
+        CONFIG_KEY_VALUE_MAP['NAME_NODE'] = hdfs_nn_ns
+        
+       # Print all
+       print CONFIG_KEY_VALUE_MAP
         
         
         
