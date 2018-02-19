@@ -123,12 +123,14 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       print zk_hosts
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
-      print CONFIG_KEY_VALUE_MAP
+      
   
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
-      hdfs_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['namenode'])
+      hdfs_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
       print hdfs_rcg
+      
+      print CONFIG_KEY_VALUE_MAP
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
