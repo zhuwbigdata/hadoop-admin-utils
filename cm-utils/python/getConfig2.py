@@ -121,7 +121,10 @@ def getHostsByServiceAndRoleType(serviceRef, role_type):
 
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
   #print cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name
-  api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)  
+  #api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)  
+  context = ssl.create_default_context(cafile='/opt/cloudera/security/certs/ChainedCA.cert.pem')
+  api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password, use_tls=True, ssl_context=context)
+
   
   # Get a list of all clusters
   cdh_cluster = None
@@ -195,7 +198,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
     
       #OOZIE
       oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
-      #inspectRolesByService(oozie_service)
+      inspectRolesByService(oozie_service)
       #inspectRCGs(oozie_service)
       oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
       #inspectKVsInRCG(oozie_server_rcg)
