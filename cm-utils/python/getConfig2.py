@@ -141,11 +141,14 @@ def getHostsByServiceAndRoleType(serviceRef, role_type):
       #print x.to_json_dict()
   return hosts_out
 
-def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
-  #print cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name
-  #api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)  
-  context = ssl.create_default_context(cafile='/opt/cloudera/security/certs/ChainedCA.cert.pem')
-  api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password, use_tls=True, ssl_context=context)
+def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile): 
+  #print  cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile
+  if cm_tls == 'false':
+    api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password) 
+  else: 
+    #context = ssl.create_default_context(cafile='/opt/cloudera/security/certs/ChainedCA.cert.pem')
+    context = ssl.create_default_context(cafile=cm_tls_cafile)
+    api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password, use_tls=True, ssl_context=context)
 
   
   # Get a list of all clusters
@@ -266,16 +269,23 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
+ 
   parser.add_argument('--cm_fqhn', required=True,
                         help='Cloudera Manager FQHN')
   parser.add_argument('--cm_user_name', required=True,
-                        help='Cloudera Manager User Name (admin/clusteradmin)')
+                        help='Cloudera Manager User Name')
   parser.add_argument('--cm_user_password', required=True,
                         help='Cloudera Manager User Password')
   parser.add_argument('--cm_cluster_name', required=True,
                         help='Cloudera Manager Cluster Name')
+  parser.add_argument('--cm_tls', required=True,
+                        help='Cloudera Manager TLS enabled')
+  parser.add_argument('--cm_tls_cafile', required=False,
+                        help='Cloudera Manager TLS CA file location')
   args = parser.parse_args()
   main(cm_fqhn = args.cm_fqhn, 
        cm_user_name = args.cm_user_name, 
        cm_user_password = args.cm_user_password,
-       cm_cluster_name = args.cm_cluster_name)
+       cm_cluster_name = args.cm_cluster_name,
+       cm_tls = args.cm_tls,
+       cm_tls_cafile = args.cm_tls_cafile)
