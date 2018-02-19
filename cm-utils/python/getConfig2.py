@@ -139,14 +139,14 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
   
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
-      print 'SERVICE:', hdfs_service.get_config(view='full')
+      #print 'SERVICE:', hdfs_service.get_config(view='full')
       hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      hdfs_nn_service = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
-      print hdfs_nn_service
+      hdfs_nn_ns = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
+      print hdfs_nn_ns
       if hdfs_nn_service == None:
-        nn_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
+        nn_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['namenode'])
       print nn_hosts
-      print CONFIG_KEY_VALUE_MAP
+      #print CONFIG_KEY_VALUE_MAP
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description='get configuration from Cloudera Manager API')
