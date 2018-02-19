@@ -268,7 +268,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
       if hbase_rs_port != None:
         CONFIG_KEY_VALUE_MAP['HBASE_REST_PORT'] = hbase_rs_port
       hbase_rs_hosts = getHostsByServiceAndRoleType(hbase_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver']) 
-      CONFIG_KEY_VALUE_MAP['HBASE_REST_IP'] = hbase_rs_host[0]
+      CONFIG_KEY_VALUE_MAP['HBASE_REST_IP'] = hbase_rs_hosts[0]
                                            
       # Print all
       print CONFIG_KEY_VALUE_MAP
