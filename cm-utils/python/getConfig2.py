@@ -51,7 +51,7 @@ def getServiceByServiceType(clusterRef, service_type):
 def inspectRCGs(serviceRef):
   service_role_group_list  = serviceRef.get_all_role_config_groups()
   for x in service_role_group_list:
-    print x
+    print x.roleType, x
 
 def getRCGByServiceAndRoleType(serviceRef, role_type):
   rcg_out = None
