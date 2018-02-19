@@ -257,7 +257,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
       
       #HBASE
       hbase_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hbase'])
-      inspectConfigByService(hbase_service)
+      #inspectConfigByService(hbase_service)
       inspectRolesByService(hbase_service)
                                            
       # Print all
