@@ -204,7 +204,8 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
     
       #OOZIE
       oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
-      inspectRolesByService(oozie_service)
+      inspectConfigByService(oozie_service)
+      #inspectRolesByService(oozie_service)
       #inspectRCGs(oozie_service)
       oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
       #inspectKVsInRCG(oozie_server_rcg)
