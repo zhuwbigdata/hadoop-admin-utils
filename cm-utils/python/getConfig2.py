@@ -143,7 +143,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
       hdfs_nn_service = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
       print hdfs_nn_service
-      if hdfs_nn_service === None:
+      if hdfs_nn_service == None:
         nn_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
       print nn_hosts
       print CONFIG_KEY_VALUE_MAP
