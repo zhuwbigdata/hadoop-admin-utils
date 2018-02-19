@@ -251,7 +251,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         if oozie_LB != None:
           CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'http://' + oozie_LB
         else:
-          CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'http://' + oozie_hosts[0] + ':' + CONFIG_KEY_VALUE_MAP['OOZIE_HTTP_PORT'] + '/oozie
+          CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'http://' + oozie_hosts[0] + ':' + CONFIG_KEY_VALUE_MAP['OOZIE_HTTP_PORT'] + '/oozie'
     
       
                                            
