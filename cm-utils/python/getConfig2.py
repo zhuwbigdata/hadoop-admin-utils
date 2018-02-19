@@ -16,7 +16,7 @@ SERVICE_TYPE_MAP = {
 
 SERVICE_ROLE_TYPE_MAP = {
   'zookeeper': 'SERVER',
-  'namename':  'NAMENODE',
+  'namenode':  'NAMENODE',
 }
 
 CONFIG_KEY_VALUE_MAP = {
