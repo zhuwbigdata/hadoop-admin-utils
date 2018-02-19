@@ -78,7 +78,7 @@ def getHostsByServiceAndRoleType(serviceRef, role_type):
   print role_type
   service_role_list =  serviceRef.get_all_roles()
   for x in service_role_list:
-    print 'ROLE:', x.type, x.get_config()
+    print 'ROLE:', x.name, x.type, x.hostRef.hostId
     if x.type == role_type:
       hosts_out.append(HOST_ID2NAME_MAP[x.hostRef.hostId])
       #print x.to_json_dict()
