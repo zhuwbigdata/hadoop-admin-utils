@@ -31,6 +31,12 @@ CONFIG_KEY_VALUE_MAP = {
   'KAFKA_BROKER': None,                
 }
 
+CONFIG_PROPERTY_MAP = {
+  'zk_client_port': 'clientPort',
+  'nameservice': 'dfs_federation_namenode_nameservice',
+
+}
+
 HOST_NAME2ID_MAP = {}
 HOST_ID2NAME_MAP = {} 
 
@@ -122,17 +128,18 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #                                    'clientPort');
       zk_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['zookeeper'])
       zk_server_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
-      zk_client_port = geValueByKeyInRCG(zk_server_rcg, 'clientPort')
+      zk_client_port = geValueByKeyInRCG(zk_server_rcg, CONFIG_PROPERTY_MAP['zk_client_port'])
       if zk_client_port != None:
         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
       zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
       print zk_hosts
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
-      
+      CONFIG_PROPERTY_MAP['zk_client_port'] : 'clientPort',
   
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
+      print 'SERVICE:', hdfs_service.get_config(view='full')
       hdfs_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
       inspectRCG(hdfs_rcg)
       
