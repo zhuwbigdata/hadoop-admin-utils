@@ -91,7 +91,7 @@ def getHostsByServiceAndRoleType(serviceRef, role_type):
   print role_type
   service_role_list =  serviceRef.get_all_roles()
   for x in service_role_list:
-    print 'ROLE name:', x.name, 'type:', x.type, 'hostId:', x.hostRef.hostId
+    #print 'ROLE name:', x.name, 'type:', x.type, 'hostId:', x.hostRef.hostId
     if x.type == role_type:
       hosts_out.append(HOST_ID2NAME_MAP[x.hostRef.hostId])
       #print x.to_json_dict()
@@ -141,8 +141,10 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
       #print 'SERVICE:', hdfs_service.get_config(view='full')
       hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
+      inspectRCG(hdfs_nn_rcg)
       hdfs_nn_ns = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
       print 'HDFS NAMENODE NAMESERVICE:', hdfs_nn_ns
+      
       nn_hosts = None
       if hdfs_nn_ns == None:
         nn_hosts = getHostsByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
