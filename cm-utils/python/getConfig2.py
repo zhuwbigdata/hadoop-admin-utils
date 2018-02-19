@@ -15,6 +15,11 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
   print cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name
   api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)  
   
+  # Get a list of all clusters
+  cdh_cluster = None
+  host_id2name_map = {}
+  host_name2id_map = {}
+  
   for c in api.get_all_clusters():
     if c.name == cm_cluster_name:
       print c
