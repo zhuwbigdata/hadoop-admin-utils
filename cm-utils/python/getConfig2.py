@@ -23,7 +23,8 @@ SERVICE_ROLE_TYPE_MAP = {
 CONFIG_KEY_VALUE_MAP = {
   'NAME_NODE': None,    
   'NAME_NODE_PORT': '8020',
-  'JOB_TRACKER': None,                                                     
+  'JOB_TRACKER': None,  
+  'RESOURCEMANAGER_ADDRESS': 8032,
   'OOZIE_URL': None,                                                                                    
   'ZOOKEEPER_QUORUM': None,                                                               
   'ZOOKEEPER_PORT': '2181',                                                                      
@@ -37,6 +38,7 @@ CONFIG_PROPERTY_MAP = {
   'zk_client_port': 'clientPort',
   'hdf_nn_ns': 'dfs_federation_namenode_nameservice',
   'hdf_nn_port': 'namenode_port',
+  'yarn_rm_address':  'yarn_resourcemanager_addres',
 }
 
 HOST_NAME2ID_MAP = {}
@@ -167,9 +169,16 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       yarn_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['yarn'])
       #inspectRCGs(yarn_service)
       yarn_jt_rcg      = getRCGByServiceAndRoleType(yarn_service, SERVICE_ROLE_TYPE_MAP['resourcemanager'])
-      inspectKVsInRCG(yarn_jt_rcg)
-        
-      
+      #inspectKVsInRCG(yarn_jt_rcg)
+      yarn_rm_address = geValueByKeyInRCG(yarn_jt_rcg, CONFIG_PROPERTY_MAP['yarn_rm_address'])
+      if yarn_rm_address == None:
+        yarn_rm_address = CONFIG_KEY_VALUE_MAP['RESOURCEMANAGER_ADDRESS']
+      else: 
+        CONFIG_KEY_VALUE_MAP['RESOURCEMANAGER_ADDRESS'] = yarn_rm_address
+      rm_hosts = getHostsByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['resourcemanager'])
+      print 'YARN RESOURCEMANGER HOSTS:', rm_hosts
+      CONFIG_KEY_VALUE_MAP['JOB_TRACKER'] = rm_hosts[0] + ':' + yarn_rm_address
+    
         
       # Print all
       print CONFIG_KEY_VALUE_MAP
