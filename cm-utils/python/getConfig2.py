@@ -7,8 +7,32 @@ import argparse
 from cm_api.api_client import ApiResource, ApiException
 from cm_api.endpoints.services import ApiService, ApiServiceSetupInfo
 
+SERVICE_TYPE_MAP = {
+  'zookeeper': 'ZOOKEEPER',
+  'hdfs': 'HDFS',
+  'hbase': 'HBASE',
+  'yarn': 'YARN',
+}
 
+SERVICE_ROLE_TYPE_MAP = {
+  'zookeeper': 'SERVER',
+}
+    
 
+def getKeyValueByServiceTypeAndRoleType(cluster, service_type, role_type, key_in):
+  value_out = None
+  for s in cluster.get_all_services():
+    if s.type == service_type:
+      print 'SERVICE:', s.type, s.get_config()
+      service_role_group_list  = s.get_all_role_config_groups()
+      for x in service_role_group_list:
+        if x.roleType == role_type:
+          print 'ROLE_GROUP:', 'type:', x.roleType, 'name:', x.name
+          for key, val  in x.get_config().items():
+            print  'Key:', key, 'Value:', val
+            if key == key_in:
+                value_out = val
+    
 
 
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
@@ -36,6 +60,12 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       print '\nServices:'
       for x in cdh_cluster.get_all_services():
         print x.type
+      getKeyValueByServiceTypeAndRoleType(cdh_cluster, 
+                                          SERVICE_TYPE_MAP['zookeeper'], 
+                                          SERVICE_ROLE_TYPE_MAP['zookeeper'],
+                                          'clientPort');
+        
+  
 
 
 if __name__ == "__main__":
