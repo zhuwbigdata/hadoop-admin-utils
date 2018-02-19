@@ -64,7 +64,7 @@ def getValueByKeyServiceConfig(serviceRef, key_in):
   service_config_list = serviceRef.get_config(view='full')
   for key, value in service_config_list[0].items():
     #print key, value
-    if key == key.in:
+    if key == key_in:
       value_out = value
   return value_out
         
