@@ -24,7 +24,7 @@ CONFIG_KEY_VALUE_MAP = {
   'OOZIE_URL': None,                                                                                    
   'ZOOKEEPER_QUORUM': None,                                                               
   'ZOOKEEPER_PORT': '2181',                                                                      
-  'KAFKA_SECURITY_PROTOCOL', None,                                                             
+  'KAFKA_SECURITY_PROTOCOL': None,                                                             
   'HBASE_REST_IP': None,                                                                   
   'HBASE_REST_PORT': None,                                                                   
   'KAFKA_BROKER': None,                
