@@ -278,7 +278,7 @@ if __name__ == "__main__":
                         help='Cloudera Manager User Password')
   parser.add_argument('--cm_cluster_name', required=True,
                         help='Cloudera Manager Cluster Name')
-  parser.add_argument('--cm_tls', required=True,
+  parser.add_argument('--cm_tls_enabled', required=True,
                         help='Cloudera Manager TLS enabled')
   parser.add_argument('--cm_tls_cafile', required=False,
                         help='Cloudera Manager TLS CA file location')
@@ -287,5 +287,5 @@ if __name__ == "__main__":
        cm_user_name = args.cm_user_name, 
        cm_user_password = args.cm_user_password,
        cm_cluster_name = args.cm_cluster_name,
-       cm_tls = args.cm_tls,
+       cm_tls_enabled = args.cm_tls_enabled,
        cm_tls_cafile = args.cm_tls_cafile)
