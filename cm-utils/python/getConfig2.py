@@ -193,7 +193,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       inspectRolesByService(oozie_service)
       #inspectRCGs(yarn_service)
       oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
-      inspectKVsInRCG(yarn_jt_rcg)
+      inspectKVsInRCG(oozie_server_rcg)
         
       # Print all
       print CONFIG_KEY_VALUE_MAP
