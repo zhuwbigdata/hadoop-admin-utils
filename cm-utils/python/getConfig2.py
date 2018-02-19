@@ -120,7 +120,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
       zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
       print zk_hosts
-      if not zk_hosts:
+      if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
       print CONFIG_KEY_VALUE_MAP
   
