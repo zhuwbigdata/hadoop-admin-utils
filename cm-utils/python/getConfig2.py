@@ -44,7 +44,7 @@ def getKeyValueByServiceTypeAndRoleType(cluster, service_type, role_type, key_in
             #print  'Key:', key, 'Value:', val
             if key == key_in:
                 value_out = val
-   return value_out
+  return value_out
 
 
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name): 
