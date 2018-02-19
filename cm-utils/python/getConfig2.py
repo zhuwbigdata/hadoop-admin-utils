@@ -17,6 +17,7 @@ SERVICE_TYPE_MAP = {
 SERVICE_ROLE_TYPE_MAP = {
   'zookeeper': 'SERVER',
   'namenode':  'NAMENODE',
+  'resourcemanager':  'RESOURCEMANAGER',
 }
 
 CONFIG_KEY_VALUE_MAP = {
@@ -164,9 +165,9 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
         
       #YARN
       yarn_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['yarn'])
-      inspectRCGs(yarn_service)
-      #hdfs_jt_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      #inspectRCG(hdfs_nn_rcg)
+      #inspectRCGs(yarn_service)
+      yarn_jt_rcg      = getRCGByServiceAndRoleType(yarn_service, SERVICE_ROLE_TYPE_MAP[''resourcemanager''])
+      inspectKVsInRCG(yarn_jt_rcg)
         
       
         
