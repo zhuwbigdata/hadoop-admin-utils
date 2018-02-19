@@ -42,6 +42,9 @@ CONFIG_PROPERTY_MAP = {
   'hdf_nn_ns': 'dfs_federation_namenode_nameservice',
   'hdf_nn_port': 'namenode_port',
   'yarn_rm_address':  'yarn_resourcemanager_addres',
+  'oozie_http_port': 'oozie_http_port',
+  'oozie_https_port':  'oozie_https_port',
+
 }
 
 HOST_NAME2ID_MAP = {}
@@ -190,11 +193,16 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
     
       #OOZIE
       oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
-      inspectRolesByService(oozie_service)
-      #inspectRCGs(yarn_service)
+      #inspectRolesByService(oozie_service)
+      #inspectRCGs(oozie_service)
       oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
-      inspectKVsInRCG(oozie_server_rcg)
-        
+      #inspectKVsInRCG(oozie_server_rcg)
+      oozie_http_port  = geValueByKeyInRCG(oozie_server_rcg, CONFIG_PROPERTY_MAP['oozie_http_port']
+      oozie_https_port = geValueByKeyInRCG(oozie_server_rcg, CONFIG_PROPERTY_MAP['oozie_https_port']
+      print 'OOOZIE http(s) ports:', oozie_http_port, oozie_https_port
+      rm_hosts = getHostsByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
+      print rm_hosts
+                                           
       # Print all
       print CONFIG_KEY_VALUE_MAP
         
