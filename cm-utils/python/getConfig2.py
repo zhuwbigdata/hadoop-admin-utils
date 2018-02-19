@@ -33,7 +33,7 @@ CONFIG_KEY_VALUE_MAP = {
 
 CONFIG_PROPERTY_MAP = {
   'zk_client_port': 'clientPort',
-  'nameservice': 'dfs_federation_namenode_nameservice',
+  'hdf_nn_ns': 'dfs_federation_namenode_nameservice',
 
 }
 
@@ -132,7 +132,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       if zk_client_port != None:
         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
       zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
-      print zk_hosts
+      #print zk_hosts
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
      
@@ -140,9 +140,12 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
       print 'SERVICE:', hdfs_service.get_config(view='full')
-      hdfs_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      inspectRCG(hdfs_rcg)
-      
+      hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
+      hdfs_nn_service = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
+      print hdfs_nn_service
+      if hdfs_nn_service === None:
+        nn_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
+      print nn_hosts
       print CONFIG_KEY_VALUE_MAP
 
 if __name__ == "__main__":
