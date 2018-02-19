@@ -242,7 +242,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       print oozie_hosts
     
       
-      if CONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL'] = 'true':
+      if CONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL'] == 'true':
         if oozie_LB != None:
           CONFIG_KEY_VALUE_MAP['OOZIE_URL'] = 'https://' + oozie_LB
         else:
