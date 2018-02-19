@@ -51,7 +51,7 @@ def getRCGByServiceAndRoleType(serviceRef, role_type):
   return rcg_out
 
 
-def inspectRCG(rcgRef, key_in):
+def inspectRCG(rcgRef):
   for key, val  in rcgRef.get_config(view='full').items():
     print  'Key:', key, 'Value:', val
  
