@@ -142,7 +142,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
       #print 'SERVICE:', hdfs_service.get_config(view='full')
       hdfs_nn_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      inspectRCG(hdfs_nn_rcg)
+      #inspectRCG(hdfs_nn_rcg)
       hdfs_nn_ns = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_ns'])
       print 'HDFS NAMENODE NAMESERVICE:', hdfs_nn_ns
       hdfs_nn_port = geValueByKeyInRCG(hdfs_nn_rcg, CONFIG_PROPERTY_MAP['hdf_nn_port'])
