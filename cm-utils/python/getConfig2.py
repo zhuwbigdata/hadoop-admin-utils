@@ -12,12 +12,15 @@ SERVICE_TYPE_MAP = {
   'hdfs': 'HDFS',
   'hbase': 'HBASE',
   'yarn': 'YARN',
+  'oozie': 'OOZIE',
 }
 
+    
 SERVICE_ROLE_TYPE_MAP = {
-  'zookeeper': 'SERVER',
+  'zookeeper_server': 'SERVER',
   'namenode':  'NAMENODE',
   'resourcemanager':  'RESOURCEMANAGER',
+  'oozie_server': 'OOZIE_SERVER'
 }
 
 CONFIG_KEY_VALUE_MAP = {
@@ -141,11 +144,11 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #                                    SERVICE_ROLE_TYPE_MAP['zookeeper'],
       #                                    'clientPort');
       zk_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['zookeeper'])
-      zk_server_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
+      zk_server_rcg      = getRCGByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper_server'])
       zk_client_port = geValueByKeyInRCG(zk_server_rcg, CONFIG_PROPERTY_MAP['zk_client_port'])
       if zk_client_port != None:
         CONFIG_KEY_VALUE_MAP['ZOOKEEPER_PORT'] = zk_client_port
-      zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper'])
+      zk_hosts = getHostsByServiceAndRoleType(zk_service, SERVICE_ROLE_TYPE_MAP['zookeeper_server'])
       print 'ZOOKEEPER HOSTS:', zk_hosts
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['ZOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
@@ -182,9 +185,15 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       else: 
         CONFIG_KEY_VALUE_MAP['RESOURCEMANAGER_ADDRESS'] = yarn_rm_address
       rm_hosts = getHostsByServiceAndRoleType(yarn_service, SERVICE_ROLE_TYPE_MAP['resourcemanager'])
-      print 'YARN RESOURCEMANGER HOSTS:', rm_hosts
+      #print 'YARN RESOURCEMANGER HOSTS:', rm_hosts
       CONFIG_KEY_VALUE_MAP['JOB_TRACKER'] = rm_hosts[0] + ':' + yarn_rm_address
     
+      #OOZIE
+      oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
+      #inspectRolesByService(yarn_service)
+      #inspectRCGs(yarn_service)
+      oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
+      inspectKVsInRCG(yarn_jt_rcg)
         
       # Print all
       print CONFIG_KEY_VALUE_MAP
