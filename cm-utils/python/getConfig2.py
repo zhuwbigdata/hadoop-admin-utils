@@ -135,7 +135,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       print zk_hosts
       if len(zk_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['QOOKEEPER_QUORUM'] = ' '.join(zk_hosts)
-      CONFIG_PROPERTY_MAP['zk_client_port'] : 'clientPort',
+     
   
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
