@@ -50,6 +50,12 @@ def getRCGByServiceAndRoleType(serviceRef, role_type):
   print rcg_out
   return rcg_out
 
+
+def inspectRCG(rcgRef, key_in):
+  for key, val  in rcgRef.get_config(view='full').items():
+    print  'Key:', key, 'Value:', val
+ 
+
 def geValueByKeyInRCG(rcgRef, key_in):
   value_out = None
   for key, val  in rcgRef.get_config().items():
@@ -128,7 +134,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #HDFS
       hdfs_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['hdfs'])
       hdfs_rcg      = getRCGByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-      print hdfs_rcg
+      inspectRCG(hdfs_rcg)
       
       print CONFIG_KEY_VALUE_MAP
 
