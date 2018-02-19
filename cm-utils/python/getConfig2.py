@@ -220,7 +220,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
       #OOZIE
       oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
       #inspectConfigByService(oozie_service)
-      oozie_use_ssl = getValueByKeyServiceConfig(oozie_service, ONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL']
+      oozie_use_ssl = getValueByKeyServiceConfig(oozie_service, ONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL'])
       print 'OOZIE TLS/SSL:', oozie_use_ssl
       #inspectRolesByService(oozie_service)
       #inspectRCGs(oozie_service)
