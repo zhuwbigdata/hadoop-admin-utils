@@ -31,6 +31,7 @@ CONFIG_KEY_VALUE_MAP = {
   'OOZIE_URL': None,    
   'OOZIE_HTTP_PORT': '11000',
   'OOZIE_HTTPS_PORT': '11443',
+  'OOZIE_USE_SSL': 'false',
   'ZOOKEEPER_QUORUM': None,                                                               
   'ZOOKEEPER_PORT': '2181',                                                                      
   'KAFKA_SECURITY_PROTOCOL': None,                                                             
@@ -46,7 +47,7 @@ CONFIG_PROPERTY_MAP = {
   'yarn_rm_address':  'yarn_resourcemanager_addres',
   'oozie_http_port': 'oozie_http_port',
   'oozie_https_port':  'oozie_https_port',
-
+  'oozie_use_ssl':  'oozie_use_ssl',
 }
 
 HOST_NAME2ID_MAP = {}
@@ -57,6 +58,16 @@ def inspectConfigByService(serviceRef):
   service_config_list = serviceRef.get_config(view='full')
   for key, value in service_config_list[0].items():
     print key, value
+    
+def getValueByKeyServiceConfig(serviceRef, key_in):
+  value_out = None
+  service_config_list = serviceRef.get_config(view='full')
+  for key, value in service_config_list[0].items():
+    #print key, value
+    if key == key.in:
+      value_out = value
+  return value_out
+        
         
 def getServiceByServiceType(clusterRef, service_type):
   service_out = None
@@ -92,6 +103,10 @@ def geValueByKeyInRCG(rcgRef, key_in):
     if key == key_in:
         value_out = val
   return value_out
+
+
+
+
 
 def getKeyValueByServiceTypeAndRoleType(clusterRef, service_type, role_type, key_in):
   value_out = None
@@ -204,7 +219,9 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
     
       #OOZIE
       oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
-      inspectConfigByService(oozie_service)
+      #inspectConfigByService(oozie_service)
+      oozie_use_ssl = getValueByKeyServiceConfig(oozie_service, ONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL']
+      print 'OOZIE TLS/SSL:', oozie_use_ssl
       #inspectRolesByService(oozie_service)
       #inspectRCGs(oozie_service)
       oozie_server_rcg      = getRCGByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['oozie_server'])
