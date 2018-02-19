@@ -21,7 +21,7 @@ SERVICE_ROLE_TYPE_MAP = {
   'zookeeper_server': 'SERVER',
   'namenode':  'NAMENODE',
   'resourcemanager':  'RESOURCEMANAGER',
-  'oozie_server': 'OOZIE_SERVER'
+  'oozie_server': 'OOZIE_SERVER',
   'hbase_restserver': 'HBASERESTSERVER',
 }
 
