@@ -24,7 +24,7 @@ CONFIG_KEY_VALUE_MAP = {
   'NAME_NODE': None,    
   'NAME_NODE_PORT': '8020',
   'JOB_TRACKER': None,  
-  'RESOURCEMANAGER_ADDRESS': 8032,
+  'RESOURCEMANAGER_ADDRESS': '8032',
   'OOZIE_URL': None,                                                                                    
   'ZOOKEEPER_QUORUM': None,                                                               
   'ZOOKEEPER_PORT': '2181',                                                                      
