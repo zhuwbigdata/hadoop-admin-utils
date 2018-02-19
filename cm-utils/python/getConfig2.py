@@ -264,11 +264,11 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
       #inspectRolesByService(hbase_service)
       hbase_rs_rcg = getRCGByServiceAndRoleType(hbase_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver'])
       #inspectKVsInRCG(hbase_rs_rcg)
-      hbase_rs_host  = geValueByKeyInRCG(hbase_rs_rcg, CONFIG_PROPERTY_MAP['hbase_rs_host'])
       hbase_rs_port  = geValueByKeyInRCG(hbase_rs_rcg, CONFIG_PROPERTY_MAP['hbase_rs_port'])
-      CONFIG_KEY_VALUE_MAP['HBASE_REST_IP'] = hbase_rs_host
       if hbase_rs_port != None:
         CONFIG_KEY_VALUE_MAP['HBASE_REST_PORT'] = hbase_rs_port
+      hbase_rs_hosts = getHostsByServiceAndRoleType(oozie_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver']) 
+      CONFIG_KEY_VALUE_MAP['HBASE_REST_IP'] = hbase_rs_host[0]
                                            
       # Print all
       print CONFIG_KEY_VALUE_MAP
