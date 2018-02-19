@@ -62,10 +62,10 @@ def inspectConfigByService(serviceRef):
 def getValueByKeyServiceConfig(serviceRef, key_in):
   value_out = None
   service_config_list = serviceRef.get_config(view='full')
-  for key, value in service_config_list[0].items():
+  for key, config in service_config_list[0].items():
     #print key, value
     if key == key_in:
-      value_out = value
+      value_out = config.value 
   return value_out
         
         
@@ -219,8 +219,8 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name):
     
       #OOZIE
       oozie_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['oozie'])
-      #inspectConfigByService(oozie_service)
-      oozie_use_ssl = getValueByKeyServiceConfig(oozie_service, CONFIG_KEY_VALUE_MAP['OOZIE_USE_SSL'])
+      inspectConfigByService(oozie_service)
+      oozie_use_ssl = getValueByKeyServiceConfig(oozie_service, CONFIG_PROPERTY_MAP['oozie_use_ssl'])
       print 'OOZIE TLS/SSL:', oozie_use_ssl
       #inspectRolesByService(oozie_service)
       #inspectRCGs(oozie_service)
