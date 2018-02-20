@@ -208,7 +208,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
       nn_hosts = None
       if hdfs_nn_ns == None:
         nn_hosts = getHostsByServiceAndRoleType(hdfs_service, SERVICE_ROLE_TYPE_MAP['namenode'])
-        print 'HDFS NAMENODE HOSTS:', nn_hosts
+        #print 'HDFS NAMENODE HOSTS:', nn_hosts
         CONFIG_KEY_VALUE_MAP['NAME_NODE'] = 'hdfs://' + nn_hosts[0] + ':' + hdfs_nn_port
       else:
         CONFIG_KEY_VALUE_MAP['NAME_NODE'] = hdfs_nn_ns
