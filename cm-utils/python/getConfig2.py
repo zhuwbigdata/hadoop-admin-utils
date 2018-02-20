@@ -24,6 +24,7 @@ SERVICE_ROLE_TYPE_MAP = {
   'resourcemanager':  'RESOURCEMANAGER',
   'oozie_server': 'OOZIE_SERVER',
   'hbase_restserver': 'HBASERESTSERVER',
+  'kafka_broker': 'KAFKA_BROKER',
 }
 
 CONFIG_KEY_VALUE_MAP = {
@@ -273,9 +274,10 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
         
       #HBASE
       kafka_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['kafka'])
-      #inspectConfigByService(kafka_service)
+      inspectConfigByService(kafka_service)
       inspectRolesByService(kafka_service)
-      #hbase_rs_rcg = getRCGByServiceAndRoleType(kafka_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver'])
+      kafka_broker_rcg = getRCGByServiceAndRoleType(kafka_service, SERVICE_ROLE_TYPE_MAP['kafka_broker'])
+      inspectKVsInRCG(kafka_broker_rcg)
                                            
       # Print all
       print CONFIG_KEY_VALUE_MAP
