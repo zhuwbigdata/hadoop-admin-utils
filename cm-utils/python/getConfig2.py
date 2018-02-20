@@ -287,7 +287,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
          CONFIG_KEY_VALUE_MAP['KAFKA_BROKER'] = ' '.join(zk_hosts)
                                            
       # Print all
-      print '\nOUTPUT:\n", CONFIG_KEY_VALUE_MAP
+      print '\nOUTPUT:\n', CONFIG_KEY_VALUE_MAP
         
         
         
