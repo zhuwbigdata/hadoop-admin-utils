@@ -95,7 +95,7 @@ def getRCGByServiceAndRoleType(serviceRef, role_type):
   for x in service_role_group_list:
     if x.roleType == role_type:
       rcg_out = x
-  print rcg_out
+  #print rcg_out
   return rcg_out
 
 
