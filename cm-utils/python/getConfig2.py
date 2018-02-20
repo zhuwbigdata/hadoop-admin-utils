@@ -41,7 +41,7 @@ CONFIG_KEY_VALUE_MAP = {
   'HBASE_REST_IP': None,                                                                   
   'HBASE_REST_PORT': '20550',                                                                 
   'KAFKA_BROKER': None,    
-  'KAFKA_SECURITY_PROTOCOL': 'PLAINTEXT'​,  
+  'KAFKA_SECURITY_PROTOCOL': 'PLAINTEXT',  
 }
 
 CONFIG_PROPERTY_MAP = {
