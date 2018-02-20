@@ -13,7 +13,8 @@ SERVICE_TYPE_MAP = {
   'hbase': 'HBASE',
   'yarn': 'YARN',
   'oozie': 'OOZIE',
-  'hbase': 'HBASE'
+  'hbase': 'HBASE',
+  'kafka': 'KAFKA',
 }
 
     
@@ -269,6 +270,12 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
         CONFIG_KEY_VALUE_MAP['HBASE_REST_PORT'] = hbase_rs_port
       hbase_rs_hosts = getHostsByServiceAndRoleType(hbase_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver']) 
       CONFIG_KEY_VALUE_MAP['HBASE_REST_IP'] = hbase_rs_hosts[0]
+        
+      #HBASE
+      kafka_service  = getServiceByServiceType(cdh_cluster, SERVICE_TYPE_MAP['kafka'])
+      inspectConfigByService(kafka_service)
+      #inspectRolesByService(hbase_service)
+      #hbase_rs_rcg = getRCGByServiceAndRoleType(kafka_service, SERVICE_ROLE_TYPE_MAP['hbase_restserver'])
                                            
       # Print all
       print CONFIG_KEY_VALUE_MAP
