@@ -93,6 +93,7 @@ class HttpClient(object):
 
     # Make a basic auth handler that does nothing. Set credentials later.
     self._passmgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+    #self._passmgr = urllib2.HTTPPasswordMgr()
     authhandler = urllib2.HTTPBasicAuthHandler(self._passmgr)
 
     # Make a cookie processor
@@ -111,6 +112,7 @@ class HttpClient(object):
           HTTPErrorProcessor(),
           urllib2.HTTPCookieProcessor(cookiejar),
           authhandler)
+    print 'http_client:', self._opener
 
   def set_basic_auth(self, username, password, realm):
     """
@@ -121,6 +123,7 @@ class HttpClient(object):
     @return: The current object
     """
     self._passmgr.add_password(realm, self._base_url, username, password)
+    print 'http_client passmgr:',  self._passmgr
     return self
 
   def set_headers(self, headers):
