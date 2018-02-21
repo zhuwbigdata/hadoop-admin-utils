@@ -29,7 +29,7 @@ __docformat__ = "epytext"
 
 LOG = logging.getLogger(__name__)
 
-API_AUTH_REALM = "Apache Ambari"
+API_AUTH_REALM = None
 API_CURRENT_VERSION = 1
 
 class ApiException(RestException):
