@@ -4,7 +4,7 @@ import ssl
 import sys
 import pprint
 import argparse
-from cm_api import api_client
+from cm_api.api_client import api_client
 
 SERVICE_TYPE_MAP = {
   'zookeeper': 'ZOOKEEPER',
