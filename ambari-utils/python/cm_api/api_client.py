@@ -73,7 +73,7 @@ class ApiResource(Resource):
     self._version = version
     protocol = use_tls and "https" or "http"
     if server_port is None:
-      server_port = use_tls and 7183 or 7180
+      server_port = use_tls and 8443 or 8080
     base_url = "%s://%s:%s/api/v%s" % \
         (protocol, server_host, server_port, version)
 
