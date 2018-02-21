@@ -36,8 +36,9 @@ import urllib2
 
 __docformat__ = "epytext"
 
+logging.basicConfig(level='DEBUG')
 LOG = logging.getLogger(__name__)
-LOG.basicConfig(level=DEBUG)
+
 
 class RestException(Exception):
   """

@@ -4,7 +4,8 @@ import ssl
 import sys
 import pprint
 import argparse
-from cm_api.api_client import ApiResource
+import requests
+
 
 SERVICE_TYPE_MAP = {
   'zookeeper': 'ZOOKEEPER',
@@ -57,6 +58,10 @@ CONFIG_PROPERTY_MAP = {
   'kafka_client_security_protocol': 'security.inter.broker.protocol',
 }
 
+AMBARI_DOMAIN='172.16.95.169'
+AMBARI_PORT='8080'
+AMBARI_USER_ID='raj_ops'
+AMBARI_USER_PW='raj_ops'
 
 def ambariREST( restAPI ) :
     url = "http://"+AMBARI_DOMAIN+":"+AMBARI_PORT+restAPI
@@ -138,16 +143,7 @@ def getNodesSummary() :
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile):
   print  cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile 
   if cm_tls_enabled == 'false':
-    api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)
-  #else:
-  #  context = ssl.create_default_context(cafile=cm_tls_cafile)
-  #  api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password, use_tls=True, ssl_context=context)
-
-  # Get a list of all clusters
-  cdh_cluster = None
-
-  for c in api.get_all_clusters():
-    print c
+    print getClusterVersionAndName() 
 
         
 
