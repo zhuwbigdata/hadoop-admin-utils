@@ -134,6 +134,7 @@ def call(method, path, ret_type,
   check_api_version(method.im_self, api_version)
   if data is not None:
     data = json.dumps(Attr(is_api_list=True).to_json(data, False))
+    print 'Data:', data
     ret = method(path, data=data, params=params)
   else:
     ret = method(path, params=params)
