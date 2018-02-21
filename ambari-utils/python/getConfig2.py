@@ -4,7 +4,7 @@ import ssl
 import sys
 import pprint
 import argparse
-from cm_api import api_client
+from cm_api.api_client import ApiResource
 
 SERVICE_TYPE_MAP = {
   'zookeeper': 'ZOOKEEPER',
@@ -139,9 +139,9 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
   #print  cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile 
   if cm_tls_enabled == 'false':
     api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)
-  else:
-    context = ssl.create_default_context(cafile=cm_tls_cafile)
-    api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password, use_tls=True, ssl_context=context)
+  #else:
+  #  context = ssl.create_default_context(cafile=cm_tls_cafile)
+  #  api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password, use_tls=True, ssl_context=context)
 
   # Get a list of all clusters
   cdh_cluster = None
