@@ -108,7 +108,7 @@ class Resource(object):
       if retry:
         time.sleep(self.retry_sleep)
       try:
-        print 'relpath in Resource:', replpath
+        print 'relpath in Resource:', relpath
         print 'params  in Resource:', params
         return self.invoke("GET", relpath, params)
       except (socket.error, urllib2.URLError) as e:
