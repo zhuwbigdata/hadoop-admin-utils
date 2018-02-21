@@ -136,7 +136,7 @@ def getNodesSummary() :
 
 
 def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile):
-  #print  cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile 
+  print  cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enabled, cm_tls_cafile 
   if cm_tls_enabled == 'false':
     api = ApiResource(server_host=cm_fqhn, username=cm_user_name, password=cm_user_password)
   #else:
