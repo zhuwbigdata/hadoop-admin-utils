@@ -50,6 +50,7 @@ class Resource(object):
     self._path = relpath.strip('/')
     self.retries = 3
     self.retry_sleep = 3
+    print 'http_client', client
 
   @property
   def base_url(self):
