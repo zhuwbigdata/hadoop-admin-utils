@@ -1,0 +1,41 @@
+README
+Wayne Zhu
+1. Install CM API python library
+2. Usage as follows:
+$ ./getConfig2.py
+usage: getConfig2.py [-h] --cm_fqhn CM_FQHN --cm_user_name CM_USER_NAME
+                     --cm_user_password CM_USER_PASSWORD --cm_cluster_name
+                     CM_CLUSTER_NAME --cm_tls_enabled CM_TLS_ENABLED
+                     [--cm_tls_cafile CM_TLS_CAFILE]
+
+Example:
+[prdservices@quickstart python]$ ./getConfig2.py --cm_fqhn localhost --cm_user_name cmnjro --cm_user_password John3:16 --cm_cluster_name 'Cloudera QuickStart' --cm_tls_enabled false  
+
+Cluster: <ApiCluster>: Cloudera QuickStart; version: CDH5
+
+HostName to HostId Mapping:
+quickstart.cloudera quickstart.cloudera
+
+HostId to HostName Mapping:
+quickstart.cloudera quickstart.cloudera
+
+Services:
+SQOOP
+ZOOKEEPER
+HUE
+IMPALA
+OOZIE
+HDFS
+YARN
+SPARK_ON_YARN
+HIVE
+SQOOP_CLIENT
+SENTRY
+SOLR
+HBASE
+KAFKA
+
+OUTPUT:
+{'JOB_TRACKER': u'quickstart.cloudera:8032', 'OOZIE_USE_SSL': 'false', 'HBASE_REST_PORT': '20550', 'OOZIE_HTTPS_PORT': '11443', 'KAFKA_BROKER': u'quickstart.cloudera', 'ZOOKEEPER_QUORUM': u'quickstart.cloudera', 'KAFKA_SECURITY_PROTOCOL': 'PLAINTEXT', 'ZOOKEEPER_PORT': u'2183', 'HBASE_REST_IP': u'quickstart.cloudera', 'OOZIE_URL': u'http://quickstart.cloudera:11000/oozie', 'OOZIE_HTTP_PORT': '11000', 'RESOURCEMANAGER_ADDRESS': '8032', 'NAME_NODE_PORT': '8020', 'NAME_NODE': u'hdfs://quickstart.cloudera:8020'}
+
+
