@@ -160,6 +160,7 @@ class HttpClient(object):
     """
     # Prepare URL and params
     url = self._make_url(path, params)
+    print 'url:', url
     if http_method in ("GET", "DELETE"):
       if data is not None:
         self.logger.warn(
@@ -177,6 +178,8 @@ class HttpClient(object):
 
     # Call it
     self.logger.debug("%s %s" % (http_method, url))
+    print 'http_client:', "%s %s" % (http_method, url)
+    print 'http_client:', request
     try:
       return self._opener.open(request)
     except urllib2.HTTPError, ex:
