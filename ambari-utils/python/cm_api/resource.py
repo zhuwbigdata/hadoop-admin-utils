@@ -66,6 +66,7 @@ class Resource(object):
     @return: Raw body or JSON dictionary (if response content type is JSON).
     """
     path = self._join_uri(relpath)
+    print 'final path:', path
     resp = self._client.execute(method,
                                 path,
                                 params=params,
@@ -107,6 +108,8 @@ class Resource(object):
       if retry:
         time.sleep(self.retry_sleep)
       try:
+        print 'relpath in Resource:', replpath
+        print 'params  in Resource:', params
         return self.invoke("GET", relpath, params)
       except (socket.error, urllib2.URLError) as e:
         if "timed out" in str(e).lower():
