@@ -22,31 +22,6 @@ __docformat__ = "epytext"
 
 CLUSTERS_PATH = "/clusters"
 
-def create_cluster(resource_root, name, version=None, fullVersion=None):
-  """
-  Create a cluster
-  @param resource_root: The root Resource object.
-  @param name: Cluster name
-  @param version: Cluster CDH major version (eg: "CDH4")
-                  - The CDH minor version will be assumed to be the
-                    latest released version for CDH4, or 5.0 for CDH5.
-  @param fullVersion: Cluster's full CDH version. (eg: "5.1.1")
-                        - If specified, 'version' will be ignored.
-                        - Since: v6
-  @return: An ApiCluster object
-  """
-  if version is None and fullVersion is None:
-    raise Exception("Either 'version' or 'fullVersion' must be specified")
-  if fullVersion is not None:
-    api_version = 6
-    version = None
-  else:
-    api_version = 1
-
-  apicluster = ApiCluster(resource_root, name, version, fullVersion)
-  return call(resource_root.post, CLUSTERS_PATH, ApiCluster, True,
-              data=[apicluster], api_version=api_version)[0]
-
 def get_cluster(resource_root, name):
   """
   Lookup a cluster by name
@@ -67,14 +42,7 @@ def get_all_clusters(resource_root, view=None):
   print 'apiCluster', ApiCluster
   return call(resource_root.get, CLUSTERS_PATH, ApiCluster, True, None)
 
-def delete_cluster(resource_root, name):
-  """
-  Delete a cluster by name
-  @param resource_root: The root Resource object.
-  @param name: Cluster name
-  @return: The deleted ApiCluster object
-  """
-  return call(resource_root.delete, "%s/%s" % (CLUSTERS_PATH, name), ApiCluster)
+
 
 class ApiCluster(BaseApiResource):
   _ATTRIBUTES = {
