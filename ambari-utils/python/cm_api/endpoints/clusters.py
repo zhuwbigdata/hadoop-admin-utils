@@ -62,8 +62,7 @@ def get_all_clusters(resource_root, view=None):
   @param resource_root: The root Resource object.
   @return: A list of ApiCluster objects.
   """
-  return call(resource_root.get, CLUSTERS_PATH, ApiCluster, True,
-      params=view and dict(view=view) or None)
+  return call(resource_root.get, CLUSTERS_PATH, ApiCluster, True, None)
 
 def delete_cluster(resource_root, name):
   """
