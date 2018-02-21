@@ -131,6 +131,9 @@ def call(method, path, ret_type,
   @param params: Optional query parameters for the call.
   @param api_version: minimum API version for the call.
   """
+  print 'data:', data
+  print 'params:', params
+  
   check_api_version(method.im_self, api_version)
   if data is not None:
     data = json.dumps(Attr(is_api_list=True).to_json(data, False))
