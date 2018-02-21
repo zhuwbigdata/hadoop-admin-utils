@@ -29,7 +29,7 @@ __docformat__ = "epytext"
 
 LOG = logging.getLogger(__name__)
 
-API_AUTH_REALM = None
+API_AUTH_REALM = 'Ambari'
 API_CURRENT_VERSION = 1
 
 class ApiException(RestException):
@@ -76,7 +76,8 @@ class ApiResource(Resource):
       server_port = use_tls and 8443 or 8080
     base_url = "%s://%s:%s/api/v%s" % \
         (protocol, server_host, server_port, version)
-
+   
+   
     client = HttpClient(base_url, exc_class=ApiException,
                         ssl_context=ssl_context)
     client.set_basic_auth(username, password, API_AUTH_REALM)
