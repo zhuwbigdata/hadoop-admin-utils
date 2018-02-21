@@ -81,6 +81,8 @@ class ApiResource(Resource):
                         ssl_context=ssl_context)
     client.set_basic_auth(username, password, API_AUTH_REALM)
     client.set_headers( { "Content-Type" : "application/json" } )
+    print 'client:', client
+    print 'base_url:', base_url
     Resource.__init__(self, client)
 
   @property
