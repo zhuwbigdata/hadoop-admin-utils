@@ -30,7 +30,7 @@ import xml.etree.ElementTree as ET
 import os
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('AmbariConfig')
 
 HTTP_PROTOCOL = 'http'
@@ -250,7 +250,6 @@ def delete_properties(cluster, config_type, args, accessor):
   update_config(cluster, config_type, delete_specific_property(config_name), accessor)
   return 0
 
-
 def get_properties(cluster, config_type, args, accessor):
   logger.info("### Performing \"get\" content:")
   if len(args) > 0:
@@ -261,6 +260,11 @@ def get_properties(cluster, config_type, args, accessor):
     output = output_to_console
   get_config(cluster, config_type, accessor, output)
   return 0
+
+def get_properties2(cluster, config_type, accessor):
+  logger.info("### Performing \"get\" content:")
+  properties, attributes = get_current_config(cluster, config_type, accessor)
+  return properties
 
 def main():
 

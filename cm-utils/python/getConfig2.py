@@ -281,7 +281,7 @@ def main(cm_fqhn, cm_user_name, cm_user_password, cm_cluster_name, cm_tls_enable
       #inspectKVsInRCG(kafka_broker_rcg)
       kafka_client_security_protocol  = geValueByKeyInRCG(kafka_broker_rcg,     CONFIG_PROPERTY_MAP['kafka_client_security_protocol'])
       if kafka_client_security_protocol != None:
-        CONFIG_PROPERTY_MAP['kafka_client_security_protocol'] = kafka_client_security_protocol
+        CONFIG_KEY_VALUE_MAP['KAFKA_SECURITY_PROTOCOL'] = kafka_client_security_protocol
       kafka_broker_hosts = getHostsByServiceAndRoleType(kafka_service, SERVICE_ROLE_TYPE_MAP['kafka_broker']) 
       if len(kafka_broker_hosts) > 0:
          CONFIG_KEY_VALUE_MAP['KAFKA_BROKER'] = ' '.join(zk_hosts)
