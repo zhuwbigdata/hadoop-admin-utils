@@ -10,4 +10,5 @@ check_usage() {
 check_usage $*
 BASE_DIR=$(dirname $0)
 source $BASE_DIR/../bin/setenv.sh
-/usr/bin/kafka-console-producer  --broker-list $KAFKA_BROKERS --topic $1
+#/usr/bin/kafka-console-producer  --broker-list $KAFKA_BROKERS --topic $1
+/usr/bin/kafka-console-producer  --broker-list $KAFKA_BROKERS --topic $1 --producer.config client.properties
