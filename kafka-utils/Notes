@@ -1,0 +1,8 @@
+export KAFKA_OPTS="-Djava.security.auth.login.config=./jaas.conf"
+Producer config
+security.protocol=SASL_PLAINTEXT
+sasl.kerberos.service.name=kafka
+Consumer config
+security.protocol=SASL_PLAINTEXT
+sasl.kerberos.service.name=kafka
+group.id=test
