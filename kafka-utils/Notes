@@ -6,3 +6,10 @@ Consumer config
 security.protocol=SASL_PLAINTEXT
 sasl.kerberos.service.name=kafka
 group.id=test
+
+Add
+ssl.keystore.location=/opt/cloudera/security/jks/keystore.jks
+ssl.keystore.password=P@ssW0rd
+ssl.key.password=P@ssW0rd
+ssl.truststore.location=/opt/cloudera/security/jks/custom.truststore
+ssl.truststore.password=changeit
