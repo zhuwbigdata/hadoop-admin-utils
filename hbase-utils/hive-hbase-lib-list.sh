@@ -1,0 +1,9 @@
+ls -al /usr/lib/hive/zookeeper.jar 
+ls -al /usr/lib/hive/hive-hbase-handler.jar 
+ls -al /usr/lib/hive/guava-14.0.1.jar 
+ls -al /usr/lib/hive/hbase-client.jar 
+ls -al /usr/lib/hive/hbase-common.jar 
+ls -al /usr/lib/hive/hbase-hadoop-compat.jar 
+ls -al /usr/lib/hive/hbase-hadoop2-compat.jar 
+ls -al /usr/lib/hive/hbase-protocol.jar 
+ls -al /usr/lib/hive/hbase-server.jar 
