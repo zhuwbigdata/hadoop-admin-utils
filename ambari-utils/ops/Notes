@@ -32,3 +32,44 @@ Initialize ZK metadata for NameNode automatic failover:
 $ sudo su hdfs -l -c 'hdfs zkfc -formatZK'
 On stand-by Name Node to be:
 $ sudo su hdfs -l -c 'hdfs namenode -bootstrapStandby'
+
+Kerberos 
+On MIT KDC server,
+$ sudo yum install krb5-server krb5-libs krb5-auth-dialog
+On each server in the cluster,
+$ sudo  yum install krb5-workstation krb5-libs krb5-auth-dialog
+Change domain/realm in /var/kerberos/krb5kdc/kdc.conf and 
+                 /var/kerberos/krb5kdc/kadm5.acl. 
+Change domain/realm in /etc/krb5.conf on all servers.
+Initialize KDC database:
+$ sudo kdb5_util create -s
+Loading random data
+Initializing database '/var/kerberos/krb5kdc/principal' for realm 'DEVOPS.COM',
+master key name 'K/M@DEVOPS.COM'
+You will be prompted for the database Master Password.
+It is important that you NOT FORGET this password.
+Enter KDC database master key:
+Re-enter KDC database master key to verify:
+Start and enable KDC and kadmin processes:
+$ sudo systemctl start krb5kdc
+$ sudo systemctl enable krb5kdc
+Created symlink from /etc/systemd/system/multi-user.target.wants/krb5kdc.service to /usr/lib/systemd/system/krb5kdc.service.
+$ sudo systemctl start kadmin
+$ sudo systemctl enable kadmin
+Created symlink from /etc/systemd/system/multi-user.target.wants/kadmin.service to /usr/lib/systemd/system/kadmin.service.
+Create admin user principal:
+$ sudo kadmin.local -q "addprinc admin/admin"
+Authenticating as principal root/admin@DEVOPS.COM with password.
+WARNING: no policy specified for admin/admin@DEVOPS.COM; defaulting to no policy
+Enter password for principal "admin/admin@DEVOPS.COM":
+Re-enter password for principal "admin/admin@DEVOPS.COM":
+Principal "admin/admin@DEVOPS.COM" created.
+$ sudo systemctl restart kadmin
+
+Install JCE on every server in the cluster:
+$ wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip"
+$ sudo unzip -o -j -q jce_policy-8.zip -d /usr/java/default/jre/lib/security/
+
+Fix Falcon webUI Ambari test failure:
+$ sudo wget http://search.maven.org/remotecontent?filepath=com/sleepycat/je/5.0.73/je-5.0.73.jar -O /usr/hdp/current/falcon-server/server/webapp/falcon/WEB-INF/lib/je-5.0.73.jar
+$ sudo chown falcon:hadoop /usr/hdp/current/falcon-server/server/webapp/falcon/WEB-INF/lib/je-5.0.73.jar

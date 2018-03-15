@@ -29,6 +29,7 @@ import xml
 import xml.etree.ElementTree as ET
 import os
 import logging
+import ssl
 
 #logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('AmbariConfig')
@@ -84,7 +85,8 @@ def api_accessor(host, login, password, protocol, port):
       request.add_header('X-Requested-By', 'ambari')
       request.add_data(request_body)
       request.get_method = lambda: request_type
-      response = urllib2.urlopen(request)
+      sslContext = ssl.SSLContext(ssl.PROTOCOL_TLSv1) 
+      response = urllib2.urlopen(request, context=sslContext)
       response_body = response.read()
     except Exception as exc:
       raise Exception('Problem with accessing api. Reason: {0}'.format(exc))

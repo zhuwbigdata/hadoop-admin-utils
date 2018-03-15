@@ -1,4 +1,4 @@
-hdev
+hdpdev
 hbi1
 hbi2
-hadmin
+hdpadmin

@@ -1,4 +1,5 @@
-#!/usr/local/bin/python
+#!/usr/bin/env python
+#/usr/local/bin/python
 #/usr/bin/python
 # Get a handle to the API client
 import ssl
@@ -137,7 +138,7 @@ def main(cm_fqhn, cm_port, cm_user_name, cm_user_password, cm_cluster_name, cm_t
   if cm_tls_enabled.lower() == 'false':
     api = Ambari(cm_fqhn, port=cm_port, username=cm_user_name, password=cm_user_password, validate_ssl=False)
   else:
-    api = ApiResource(cm_fqhn, port=cm_port, username=cm_user_name, password=cm_user_password, validate_ssl=True)
+    api = Ambari(cm_fqhn, port=cm_port, username=cm_user_name, password=cm_user_password, validate_ssl=False, protocol='https')
     
     
   # Get a list of all clusters
