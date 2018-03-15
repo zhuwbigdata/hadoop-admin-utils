@@ -1,0 +1,6 @@
+CREATE USER 'rangeradmin'@'%' IDENTIFIED BY 'ranger123';
+GRANT ALL PRIVILEGES ON *.* TO 'rangeradmin'@'%';
+FLUSH PRIVILEGES;
+SELECT User FROM mysql.user;
+CREATE DATABASE ranger;
+SHOW DATABASES;

@@ -1,3 +1,3 @@
-wayne	hdev
-matt	hbi1
-dan	hbi2
+wayne  hdpadmin
+daniel hdpdev
+matt   hdpqa
