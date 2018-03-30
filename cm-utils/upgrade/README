@@ -4,9 +4,9 @@ Backup DBs for CM,
                Reports Manager, 
                Cloudera Navigator Audit Server, 
                Cloudera Navigator Metadata Server 
-mysqldump -uscm   -p scm    > scm-backup.sql
-mysqldump -unav   -p nav    > nav-backup.sql
-mysqldump -unavms -p navms  > navms-backup.sql
-mysqldump -uamon  -p amon   > amon-backup.sql
-mysqldump -urman  -p rman   > rman-backup.sql
-DB names and users may vary.
+DB names and DB users may vary.
+Roles:
+MGMT-NAVIGATOR-BASE
+MGMT-NAVIGATORMETASERVER-BASE
+MGMT-ACTIVITYMONITOR-BASE
+MGMT-REPORTSMANAGER-BASE
