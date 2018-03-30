@@ -1,0 +1,24 @@
+#!/bin/bash
+DB_HOST=
+DB_PORT=3306
+CMF_USER=
+CMF_PW=
+CMF_DB=
+NAV_USER=
+NAV_PW=
+NAV_DB=
+NAVMS_USER=
+NAVMS_PW=
+NAVMS_DB=
+AMON_USER=
+AMON_PW=
+AMON_DB=
+RMAN_USER=
+RMAN_PW=
+RMAN_DB=
+
+mysqldump --host=${DB_HOST} --port=${DB_PORT}  --user=${CMF_USER}   --password=${CMF_PW}   ${CMF_DB}   > scm-backup.sql
+mysqldump --host=${DB_HOST} --port=${DB_PORT}  --user=${NAV_USER}   --password=${NAV_PW}   ${NAV_DB}   > nav-backup.sql
+mysqldump --host=${DB_HOST} --port=${DB_PORT}  --user=${NAVMS_USER} --password=${NAVMS_PW} ${NAVMS_DB} > navms-backup.sql
+mysqldump --host=${DB_HOST} --port=${DB_PORT}  --user=${AMON_USER}  --password=${AMON_PW}  ${AMON_DB}  > amon-backup.sql
+mysqldump --host=${DB_HOST} --port=${DB_PORT}  --user=${RMAN_USER}  --password=${RMAN_PW}  ${RMAN_DB}  > rman-backup.sql
