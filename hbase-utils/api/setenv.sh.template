@@ -1,11 +1,11 @@
 #!/bin/bash
 export HBASE_RESTSVR_HOST=
-export HBASE_RESTSVR_PORT=20050
-export TLS_ENABLED=true
-if [ "$TLS_ENALBED" = true ]; then
+export HBASE_RESTSVR_PORT=20550
+TLS_ENABLED=true
+if [ "$TLS_ENABLED"=true ]; then
+  export CURL_CMD='curl --insecure --negotiate -u : '
+  export HTTP_PROTOCOL=https
+else
   export CURL_CMD='curl --negotiate -u : '
   export HTTP_PROTOCOL=http
-else
-  export CURL_CMD='curl --insecure  --negotiate -u : '
-  export HTTP_PROTOCOL=https
 fi
