@@ -1,15 +1,34 @@
+Notes:
+For Kerberos authentication, add the following:
 export KAFKA_OPTS="-Djava.security.auth.login.config=./jaas.conf"
-Producer config
-security.protocol=SASL_PLAINTEXT
-sasl.kerberos.service.name=kafka
-Consumer config
-security.protocol=SASL_PLAINTEXT
-sasl.kerberos.service.name=kafka
-group.id=test
 
-Add
-ssl.keystore.location=/opt/cloudera/security/jks/keystore.jks
-ssl.keystore.password=P@ssW0rd
-ssl.key.password=P@ssW0rd
-ssl.truststore.location=/opt/cloudera/security/jks/custom.truststore
-ssl.truststore.password=changeit
+For non-SSL, create the following for producers and consumers:
+Producer config - producer.properties
+  security.protocol=SASL_PLAINTEXT
+  sasl.kerberos.service.name=kafka
+
+Consumer config - consumer.properties
+  security.protocol=SASL_PLAINTEXT
+  sasl.kerberos.service.name=kafka
+  group.id=test
+
+Add SSL configuration to producer.properties and consumer.properties:
+  ssl.keystore.location=/opt/cloudera/security/jks/keystore.jks
+  ssl.keystore.password=P@ssW0rd
+  ssl.key.password=P@ssW0rd
+  ssl.truststore.location=/opt/cloudera/security/jks/custom.truststore
+  ssl.truststore.password=changeit
+
+Authorization
+https://www.cloudera.com/documentation/kafka/latest/topics/kafka_security.html#using_kafka_with_sentry
+Configuration on Kafka
+Sentry Service - enabled
+Super User - kakfa, add custom admin users here.
+
+
+
+Grant group admin with role admin_role
+$ kafka-sentry -lr -g admin
+$ kafka-sentry -arg -r admin_role -g admin
+$ kafka-sentry -gpr -r admin_role -p "HOST=*->TOPIC=*->action=all"
+

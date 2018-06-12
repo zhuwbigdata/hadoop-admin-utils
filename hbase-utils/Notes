@@ -1,2 +1,7 @@
 README
-Please add "HBase Service" in HIVE Configuration via CM.
+1. Add "HBase Service" in HIVE Configuration via CM.
+2. Modify HBASE ACL (no Sentry) such as HBASE superuser (hive, appuser).
+3. Creating symbolic link on all data nodes
+ln -s /etc/hbase/conf/hbase-site.xml /etc/spark2/conf/hbase-site.xml
+4. Aadd following run time configs
+--conf "spark.executor.extraClassPath=/etc/hbase/conf/" --conf "spark.driver.extraClassPath=/etc/hbase/conf/"

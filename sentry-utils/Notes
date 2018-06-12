@@ -5,15 +5,32 @@ https://www.cloudera.com/documentation/enterprise/latest/topics/sg_sentry_servic
 -------------------------------------------------------------------------------------
 HDFS Superuser Group (dfs.permissions.supergroup, dfs.permissions.superusergroup)
 CM -> HDFS ->  Configuration -> Superuser Groups
+Replace supergroup with custom administrator group (i.e. hadoop-super-admin).
+
+Enable Sentry Synchronization - HDFS: checked
+
+Sentry Synchronization Path Prefixes (sentry.hdfs.integration.path.prefixes):
+/user/hive/warehouse
+/raw
+/staging
+/refined
+
 -------------------------------------------------------------------------------------
-Sentry User Group Mapping (hadoop.security.group.mapping)
+HDFS User Group Mapping (hadoop.security.group.mapping)
 Use HadoopUserGroupMapping - Shell (recommended) or LDAP
 Sentry doesn't do user group mapping by itself. However, 
 Ranger (HDP) is more flexible, allowing manual upload user
 group mapping. 
+
+Admin Groups - sentry.service.admin.group
+Add custom administrator group to the existing groups:
+hive,impala,hue,solr,kafka,hadoop-super-admin(custom administrator group)
+
 -------------------------------------------------------------------------------------
 Enable Sentry Admin Groups (sentry.service.admin.group)
 CM -> Sentry -> Configuration -> Admin Groups
+Add custom administrator group (i.e. hadoop-super-admin).
+
 -------------------------------------------------------------------------------------
 Lock down default and no-default hive warehouse directoris as follows:
 mode 771 
